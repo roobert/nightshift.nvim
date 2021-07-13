@@ -44,7 +44,6 @@ local theme = lush(function()
     local white = hsl("#eeeeee")
     local black = hsl("#111111")
 
-    local bg = hsl("#303030")
 
     local orange = hsl("#ff9e64")
     local yellow = hsl("#e0af68")
@@ -114,7 +113,7 @@ local theme = lush(function()
 
     local hint = accent5_2.lighten(10)
     local info = hsl("#5fd75f")
-    local warn = yellow.lighten(10)
+    local warn = yellow
     local error = hsl("#af5f87")
 
     local fg = accent4_1.lighten(15)
@@ -150,30 +149,34 @@ local theme = lush(function()
         -- main syntax
         Comment  { fg = fg.lighten(5) }, -- any comment
 
-        Normal   { fg = fg.lighten(50), bg = bg }, -- normal text
-
         String   { fg = fg.lighten(80) }, -- a string constant: "this is a string"
+        Include     { fg = String.fg.darken(60) }, --  preprocessor #include
 
-        Include     { fg = String.fg.darken(30) }, --  preprocessor #include
+        Normal   { fg = accent0_1.lighten(35), bg = bg }, -- normal text
 
-        Keyword  { fg = accent0_0 }, --  any other keyword
+        -- def, etc.
+        Keyword  { fg = Normal.fg.darken(40) }, --  any other keyword
+        -- if, etc.
         Conditional { fg = Keyword.fg }, --  if, then, else, endif, switch, etc.
+        Statement  { fg = Keyword.fg }, -- (preferred) any statement
 
-        Special     { fg = Operator.fg.lighten(30) }, -- (preferred) any special symbol
+        TSField { fg = Normal.fg.lighten(40) }, -- For fields.
 
-        TSMethod { fg = TSField.fg.darken(15) }, -- For method calls and definitions.
+        Function { fg = accent1_4 }, -- function name (also: methods for classes)
+        TSMethod { fg = Function.fg }, -- For method calls and definitions.
+        TSFunction { fg = Function.fg }, -- For function (calls and definitions).
+        TSPunctBracket { fg = Function.fg }, -- For brackets and parens.
+        TSFuncBuiltin {fg = Function.fg}, -- For builtin functions: `table.insert` in Lua.
 
-        Function { fg = accent0_1 }, -- function name (also: methods for classes)
-        TSFunction { fg = TSField.fg.darken(15) }, -- For function (calls and definitions).
+        Special     { fg = Include.fg.lighten(30) }, -- (preferred) any special symbol
+        Operator    { fg = Include.fg.lighten(70) }, -- "sizeof", "+", "*", etc.
 
-        TSPunctBracket { fg = TSMethod.fg.darken(15) }, -- For brackets and parens.
-        TSField { fg = Normal.fg.darken(15) }, -- For fields.
+        Identifier { fg = Function.fg.saturation(5).lighten(20) }, -- (preferred) any variable name
 
-        Operator    { fg = Include.fg.lighten(30) }, -- "sizeof", "+", "*", etc.
-
-        Identifier { fg = accent1_5 }, -- (preferred) any variable name
-        Statement  { fg = accent1_4 }, -- (preferred) any statement
-        Type       { fg = accent1_4 }, -- (preferred) int, long, char, etc.
+        -- this has to be Normal because there's no way to distinguish it from normal variables
+        TSParameter { fg = Normal.fg }, -- For parameters of a function.
+        --TSVariable { fg = Identifier.fg }, -- Any variable name that does not have another highlight.
+        Type       { fg = accent1_4.hue(200).saturation(90) }, -- (preferred) int, long, char, etc.
 
         -- left margin
         SignColumn   { bg = Normal.bg }, -- column where |signs| are displayed
@@ -182,16 +185,15 @@ local theme = lush(function()
 
         -- window decorations
         VertSplit   { fg = bg.darken(100) }, -- the column separating vertically split windows
-        Pmenu       { fg = VertSplit.fg.lighten(40), bg = Normal.bg.darken(30) }, -- Popup menu: normal item.
-        PmenuSel    { fg = String.fg.darken(10), bg = Pmenu.bg }, -- Popup menu: selected item.
-        -- NOTE: these are not vsnip/lsp ref wins..
-        --NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
-        --NormalNC     { fg = Pmenu.fg, bg = Pmenu.bg }, -- normal text in non-current windows
-        --PmenuSbar   { }, -- Popup menu: scrollbar.
-        --PmenuThumb  { }, -- Popup menu: Thumb of the scrollbar.
         EndOfBuffer { fg = Comment.fg }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
         ColorColumn  { bg = String.fg.darken(30) }, -- used for the columns set with 'colorcolumn'
         IndentBlanklineChar { fg = String.fg.darken(60) },
+
+        -- menus (inc. completion menu)
+        Pmenu       { fg = VertSplit.fg.lighten(60), bg = Normal.bg.darken(30) }, -- Popup menu: normal item.
+        PmenuSel    { fg = String.fg.darken(10), bg = Pmenu.bg }, -- Popup menu: selected item.
+        PmenuSbar   { bg = bg.lighten(15) }, -- Popup menu: scrollbar.
+        PmenuThumb  { bg = bg.lighten(30) }, -- Popup menu: Thumb of the scrollbar.
 
         -- cursor
         Cursor       { fg = String.fg, bg = hsl("#ff0000") }, -- character under the cursor
@@ -201,8 +203,19 @@ local theme = lush(function()
         CursorColumn { bg = CursoLine.bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         Visual       { bg = CursorLine.bg.lighten(4) }, -- Visual mode selection
 
+        Error          { fg = white, bg = error }, -- (preferred) any erroneous construct
+        Todo           { fg = white, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-        -- extra syntax
+        LspDiagnosticsDefaultWarning { fg = warn, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+        LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+        LspDiagnosticsVirtualTextError { fg = error, bg = CursorLine.bg }, -- Used for "Error" diagnostic virtual text
+        LspDiagnosticsDefaultHint { fg = hint, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+
+        -- extra syntax (unused)
+
+        -- NOTE: these are not vsnip/lsp ref wins..
+        --NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
+        --NormalNC     { fg = Pmenu.fg, bg = Pmenu.bg }, -- normal text in non-current windows
 
         -- These groups are not listed as default vim groups,
         -- but they are defacto standard group names for syntax highlighting.
@@ -272,16 +285,10 @@ local theme = lush(function()
         -- Italic     { gui = "italic" },
         -- ("Ignore", below, may be invisible...)
         -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
-        Error          { fg = white, bg = error }, -- (preferred) any erroneous construct
-        Todo           { fg = white, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
         -- These groups are for the native LSP client. Some other LSP clients may
         -- use these groups, or use their own. Consult your LSP client's
         -- documentation.
-        LspDiagnosticsDefaultWarning { fg = warn, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-        LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-        LspDiagnosticsVirtualTextError { fg = error, bg = CursorLine.bg }, -- Used for "Error" diagnostic virtual text
-        LspDiagnosticsDefaultHint { fg = hint, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
         --LspReferenceText { fg = Pmenu.fg, bg = Pmenu.bg }, -- used for highlighting "text" references
         -- LspReferenceRead {}, -- used for highlighting "read" references
         -- LspReferenceWrite {}, -- used for highlighting "write" references
@@ -322,7 +329,6 @@ local theme = lush(function()
 
 
         -- TSFloat {}, -- For floats.
-        -- TSFuncBuiltin {fg = String.fg}, -- For builtin functions: `table.insert` in Lua.
         -- TSFuncMacro {}, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
         -- TSInclude {fg = String.fg.lighten(100)}, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
         -- TSKeyword {}, -- For keywords that don't fall in previous categories.
@@ -332,7 +338,6 @@ local theme = lush(function()
         -- TSNone {}, -- TODO: docs
         -- TSNumber {}, -- For all numbers
         -- TSOperator {}, -- For any operator: `+`, but also `->` and `*` in C.
-        -- TSParameter {fg = String.fg}, -- For parameters of a function.
         -- TSParameterReference {}, -- For references to parameters of a function.
         -- TSProperty {}, -- Same as `TSField`.
         -- TSPunctDelimiter {}, -- For delimiters ie: `.`
@@ -344,7 +349,6 @@ local theme = lush(function()
         -- TSSymbol {}, -- For identifiers referring to symbols or atoms.
         -- TSType {}, -- For types.
         -- TSTypeBuiltin {}, -- For builtin types.
-        -- TSVariable {}, -- Any variable name that does not have another highlight.
         -- TSVariableBuiltin {}, -- Variable names that are defined by the languages, like `this` or `self`.
         -- TSTag {}, -- Tags like html tag names.
         -- TSTagDelimiter {}, -- Tag delimiter like `<` `>` `/`
@@ -360,52 +364,5 @@ end)
 
 -- return our parsed theme for extension or use else where.
 return theme
-
--- colors = {
---  none = hsl("NONE"),
---  white = hsl("#eeeeee")
---  bg_dark = hsl("#1f2335")),
---  bg = hsl("#24283b")),
---  bg_highlight = hsl("#292e42")),
---  terminal_black = hsl("#414868")),
---  fg = hsl("#c0caf5")),
---  fg_dark = hsl("#a9b1d6"),
---  fg_gutter = hsl("#3b4261"),
---  dark3 = hsl("#545c7e"),
---  comment = hsl("#565f89"),
---  dark5 = hsl("#737aa2"),
---
---  blue = hsl("#7aa2f7"),
---  blue0 = hsl("#3d59a1"),
---
---  cyan = hsl("#7dcfff"),
---  blue1 = hsl("#2ac3de"),
---  blue2 = hsl("#0db9d7"),
---  blue5 = hsl("#89ddff"),
---  blue6 = hsl("#B4F9F8"),
---  blue7 = hsl("#394b70"),
---  purple = hsl("#9d7cd8"),
---  magenta = hsl("#bb9af7"),
---  orange = hsl("#ff9e64"),
---  yellow = hsl("#e0af68"),
---  
---  rblue0 = hsl("#000087"),
---  rblue1 = hsl("#005fff"),
---  rblue2 = hsl("#87d7ff"),
---  rblue3 = hsl("#87ffff"),
---  rpurple0 = hsl("#800080"),
---  rpurple1 = hsl("#5f00af>"),
---  rpurple2 = hsl("#8787d7"),
-
---  --blue = hsl("#0000ac"),
---  --blue1 = hsl("#0000bd"),
---  --blue2 = hsl("#0000cf"),
---  --indigo = hsl("#0000dd"),
-
---  red = hsl("#f7768e"),
---  red1 = hsl("#db4b4b"),
---  git = { change = hsl("#6183bb"), add = hsl("#449dab"), delete = hsl("#914c54"), conflict = hsl("#bb7a61" }),
---  gitSigns = { add = hsl("#164846"), change = hsl("#394b70"), delete = hsl("#823c41" }),
---  }
 
 -- vi:nowrap
