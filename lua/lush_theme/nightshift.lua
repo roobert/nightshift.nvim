@@ -120,6 +120,18 @@ local theme = lush(function()
     local fg = accent4_1.lighten(15)
     local bg = accent4_1
 
+    -- TODO
+    -- fix easy align and tidy up this file..
+    -- reverse order of os.path.join colouoring
+    -- colour of import, etc.
+    -- list the primary colour path from a.b.c.d
+    -- list accent colours
+    -- list red, blue, yellow, green colours
+    -- TODO etc.
+    -- lsp menu colours
+    -- bg colour in side gutter for warnings
+    -- galaxy bar colours
+
     return {
         -- You can uncomment these and leave them empty to disable any
         -- styling for that group (meaning they mostly get styled as Normal)
@@ -137,20 +149,30 @@ local theme = lush(function()
 
         -- main syntax
         Comment  { fg = fg.lighten(5) }, -- any comment
+
         Normal   { fg = fg.lighten(50), bg = bg }, -- normal text
+
         String   { fg = fg.lighten(80) }, -- a string constant: "this is a string"
 
         Include     { fg = String.fg.darken(30) }, --  preprocessor #include
 
-        Keyword  { fg = accent0_0}, --  any other keyword
-        Function { fg = accent0_1 }, -- function name (also: methods for classes)
-
+        Keyword  { fg = accent0_0 }, --  any other keyword
         Conditional { fg = Keyword.fg }, --  if, then, else, endif, switch, etc.
-        Operator    { fg = Include.fg.lighten(30) }, -- "sizeof", "+", "*", etc.
+
         Special     { fg = Operator.fg.lighten(30) }, -- (preferred) any special symbol
 
-        Identifier { fg = accent1_5}, -- (preferred) any variable name
-        Statement  { fg = accent1_4}, -- (preferred) any statement
+        TSMethod { fg = TSField.fg.darken(15) }, -- For method calls and definitions.
+
+        Function { fg = accent0_1 }, -- function name (also: methods for classes)
+        TSFunction { fg = TSField.fg.darken(15) }, -- For function (calls and definitions).
+
+        TSPunctBracket { fg = TSMethod.fg.darken(15) }, -- For brackets and parens.
+        TSField { fg = Normal.fg.darken(15) }, -- For fields.
+
+        Operator    { fg = Include.fg.lighten(30) }, -- "sizeof", "+", "*", etc.
+
+        Identifier { fg = accent1_5 }, -- (preferred) any variable name
+        Statement  { fg = accent1_4 }, -- (preferred) any statement
         Type       { fg = accent1_4 }, -- (preferred) int, long, char, etc.
 
         -- left margin
@@ -159,11 +181,14 @@ local theme = lush(function()
         CursorLineNr { fg = LineNr.fg.lighten(30) }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 
         -- window decorations
-        VertSplit   { fg = bg.darken(30), bg = bg.darken(30) }, -- the column separating vertically split windows
-        Pmenu       { fg = VertSplit.fg.lighten(40), bg = VertSplit.bg }, -- Popup menu: normal item.
-        PmenuSel    { fg = String.fg.darken(10) }, -- Popup menu: selected item.
-        PmenuSbar   { }, -- Popup menu: scrollbar.
-        PmenuThumb  { }, -- Popup menu: Thumb of the scrollbar.
+        VertSplit   { fg = bg.darken(100) }, -- the column separating vertically split windows
+        Pmenu       { fg = VertSplit.fg.lighten(40), bg = Normal.bg.darken(30) }, -- Popup menu: normal item.
+        PmenuSel    { fg = String.fg.darken(10), bg = Pmenu.bg }, -- Popup menu: selected item.
+        -- NOTE: these are not vsnip/lsp ref wins..
+        --NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
+        --NormalNC     { fg = Pmenu.fg, bg = Pmenu.bg }, -- normal text in non-current windows
+        --PmenuSbar   { }, -- Popup menu: scrollbar.
+        --PmenuThumb  { }, -- Popup menu: Thumb of the scrollbar.
         EndOfBuffer { fg = Comment.fg }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
         ColorColumn  { bg = String.fg.darken(30) }, -- used for the columns set with 'colorcolumn'
         IndentBlanklineChar { fg = String.fg.darken(60) },
@@ -174,6 +199,7 @@ local theme = lush(function()
         CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
         CursorLine   { bg = bg.lighten(5) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
         CursorColumn { bg = CursoLine.bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+        Visual       { bg = CursorLine.bg.lighten(4) }, -- Visual mode selection
 
 
         -- extra syntax
@@ -221,8 +247,6 @@ local theme = lush(function()
         -- MoreMsg      { }, -- |more-prompt|
         -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
 
-        -- NormalFloat  { }, -- Normal text in floating windows.
-        -- NormalNC     { }, -- normal text in non-current windows
         -- Question     { }, -- |hit-enter| prompt and yes/no questions
         -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         -- Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
@@ -237,7 +261,6 @@ local theme = lush(function()
         -- TabLineFill  { }, -- tab pages line, where there are no labels
         -- TabLineSel   { }, -- tab pages line, active tab page label
         -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-        -- Visual       { bg = CursorLine.bg }, -- Visual mode selection
         -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
         -- WarningMsg   { }, -- warning messages
         -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -259,7 +282,7 @@ local theme = lush(function()
         LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
         LspDiagnosticsVirtualTextError { fg = error, bg = CursorLine.bg }, -- Used for "Error" diagnostic virtual text
         LspDiagnosticsDefaultHint { fg = hint, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-        -- LspReferenceText {}, -- used for highlighting "text" references
+        --LspReferenceText { fg = Pmenu.fg, bg = Pmenu.bg }, -- used for highlighting "text" references
         -- LspReferenceRead {}, -- used for highlighting "read" references
         -- LspReferenceWrite {}, -- used for highlighting "write" references
         -- LspDiagnosticsDefaultError { LspDiagnosticsVirtualTextError.fg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
@@ -297,10 +320,6 @@ local theme = lush(function()
         -- TSError {}, -- For syntax/parser errors.
         -- TSException {}, -- For exception related keywords.
 
-        TSField { fg = Normal.fg.darken(15) }, -- For fields.
-        TSFunction { fg = TSField.fg.darken(15) }, -- For function (calls and definitions).
-        TSMethod { fg = TSField.fg.darken(15) }, -- For method calls and definitions.
-        TSPunctBracket { fg = TSMethod.fg.darken(15) }, -- For brackets and parens.
 
         -- TSFloat {}, -- For floats.
         -- TSFuncBuiltin {fg = String.fg}, -- For builtin functions: `table.insert` in Lua.
