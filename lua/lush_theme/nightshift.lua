@@ -143,8 +143,11 @@ local theme = lush(function()
     -- search
     -- FIXME change this to same as Int
     MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    IncSearch { fg = black, bg = orange }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+
+    IncSearch { fg = black, bg = yellow.lighten(70) }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     Substitute { fg = black, bg = yellow }, -- |:substitute| replacement text highlighting
+    Search { fg = black, bg = yellow },
+    CurSearch { fg = black, bg = yellow.lighten(70) },
 
     -- main syntax
     Comment { fg = fg.lighten(20) }, -- any comment
