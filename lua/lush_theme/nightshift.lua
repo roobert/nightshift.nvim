@@ -206,13 +206,17 @@ local theme = lush(function()
     CursorColumn { bg = CursoLine.bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     Visual { bg = CursorLine.bg.lighten(4) }, -- Visual mode selection
 
-    Error { fg = white, bg = error }, -- (preferred) any erroneous construct
-    Todo { fg = white, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Error { fg = yellow }, -- (preferred) any erroneous construct
+    Todo { fg = yellow }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     LspDiagnosticsDefaultWarning { fg = warn, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsVirtualTextError { fg = error, bg = CursorLine.bg }, -- Used for "Error" diagnostic virtual text
     LspDiagnosticsDefaultHint { fg = hint, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    --LspDiagnosticsDefaultWarning { fg = warn, bg = "#FBBF24" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    --LspDiagnosticsDefaultInformation { fg = info, bg = "#2563EB" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    --LspDiagnosticsVirtualTextError { fg = error, bg = "#DC2626" }, -- Used for "Error" diagnostic virtual text
+    --LspDiagnosticsDefaultHint { fg = hint, bg = "#FF00FF" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
     -- extra syntax (unused)
 
