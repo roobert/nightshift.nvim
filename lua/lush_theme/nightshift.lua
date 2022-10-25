@@ -84,21 +84,12 @@ local theme = lush(function()
   -- local accent5_3 = hsl("#3d59a1")
   -- local accent5_4 = hsl("#2e3c80")
 
-  local red    = hsl("#af5f87")
-  local orange = hsl("#ff9e64")
-  local yellow = hsl("#e0af68")
-  local green  = hsl("#5fd75f")
-  local blue   = hsl("#00afff")
-  local black  = hsl("#111111")
-
-  local accent4_1 = hsl("#1d2340")
-  local accent0_1 = hsl("#5f5faf")
-  local accent5_2 = hsl("#7aa2f7")
-  local teal = hsl("#87d7d7")
-
   -- main colours
-  local fg = accent4_1.lighten(15)
-  local bg = hsl("#1d2340")
+  local black = hsl("#111111")
+  local bg    = hsl("#1d2340")
+
+  local constant_accent = hsl("#ffa0a0")
+  local teal            = hsl("#87d7d7")
 
   local main5 = hsl("#bfbfdf")
   local main0 = hsl("#ced2e9")
@@ -109,6 +100,12 @@ local theme = lush(function()
   local main2 = hsl("#46549b")
   local main3 = hsl("#46468b")
   local main4 = hsl("#364178")
+
+  local red    = hsl("#af5f87")
+  local orange = hsl("#ff9e64")
+  local yellow = hsl("#e0af68")
+  local green  = hsl("#5fd75f")
+  local blue   = hsl("#00afff")
 
   -- TODO, FIXME, WARN, etc.
   local hint  = blue
@@ -148,13 +145,6 @@ local theme = lush(function()
     Operator { fg = main6 }, -- "sizeof", "+", "*", etc.
     Special { fg = main7 }, -- (preferred) any special symbol
 
-    -- search
-    MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    IncSearch { fg = black, bg = yellow.lighten(70) }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
-    CurSearch { fg = black, bg = yellow.lighten(70) },
-    Search { fg = black, bg = yellow },
-    Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
-
     -- this has to be Normal because there's no way to distinguish it from normal variables
     TSParameter { fg = main1 }, -- For parameters of a function.
     Type { fg = teal.hue(200).saturation(90) }, -- (preferred) int, long, char, etc.
@@ -184,38 +174,40 @@ local theme = lush(function()
     CursorColumn { bg = CursoLine.bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     Visual { bg = CursorLine.bg.lighten(4) }, -- Visual mode selection
 
+    Constant { fg = constant_accent }, -- (preferred) any constant
+    Character { fg = constant_accent }, --  a character constant: 'c', '\n'
+    Number { fg = constant_accent }, --   a number constant: 234, 0xff
+    Boolean { fg = constant_accent }, --  a boolean constant: TRUE, false
+    Float { fg = constant_accent }, --    a floating point constant: 2.3e10
+
+    -- search/match
+    MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    IncSearch { fg = black, bg = yellow.lighten(70) }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
+    CurSearch { fg = black, bg = yellow.lighten(70) },
+    Search { fg = black, bg = yellow },
+    Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
+
+    -- TODO, FIXME, etc.
     WarningMsg { fg = black, bg = error }, -- warning messages
     Error { fg = black, bg = error }, -- (preferred) any erroneous construct
     Todo { fg = black, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
+    -- diagnostics
     LspDiagnosticsDefaultWarning { fg = warn, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsVirtualTextError { fg = error, bg = CursorLine.bg }, -- Used for "Error" diagnostic virtual text
     LspDiagnosticsDefaultHint { fg = hint, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
-    -- Diff
+    -- diff stuff
     DiffAdd { fg = diff_add }, -- diff mode: Added line |diff.txt|
     DiffChange { fg = diff_change }, -- diff mode: Changed line |diff.txt|
     DiffDelete { fg = diff_remove }, -- diff mode: Deleted line |diff.txt|
 
-    TSURI { fg = String.fg } -- Any URI like a link or email.
+    TSURI { fg = main0 } -- Any URI like a link or email.
 
     -- extra syntax (unused)
-
-    -- NOTE: these are not vsnip/lsp ref wins..
-    --NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
-    --NormalNC     { fg = Pmenu.fg, bg = Pmenu.bg }, -- normal text in non-current windows
-
-    -- These groups are not listed as default vim groups,
-    -- but they are defacto standard group names for syntax highlighting.
-    -- commented out groups should chain up to their "preferred" group by
-    -- default,
-    -- Uncomment and edit if you want more specific syntax highlighting.
-    -- Constant  { }, -- (preferred) any constant
-    -- Character { }, --  a character constant: 'c', '\n'
-    -- Number    { }, --   a number constant: 234, 0xff
-    -- Boolean   { }, --  a boolean constant: TRUE, false
-    -- Float     { }, --    a floating point constant: 2.3e10
+    -- NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
+    -- NormalNC     { fg = Pmenu.fg, bg = Pmenu.bg }, -- normal text in non-current windows
 
     -- Repeat         { fg = String.fg}, --   for, do, while, etc.
     -- Label          { fg = String.fg}, --    case, default, etc.
@@ -263,10 +255,8 @@ local theme = lush(function()
     -- TabLineSel   { }, -- tab pages line, active tab page label
     -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    -- WarningMsg   { }, -- warning messages
     -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     -- WildMenu     { }, -- current match in 'wildmenu' completion
-
 
     -- Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
     -- Bold       { gui = "bold" },
@@ -315,7 +305,6 @@ local theme = lush(function()
     -- TSError        { }, -- For syntax/parser errors.
     -- TSException    { }, -- For exception related keywords.
     -- TSVariable     { }, -- Any variable name that does not have another highlight.
-
 
     -- TSFloat              { }, -- For floats.
     -- TSFuncMacro          { }, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
