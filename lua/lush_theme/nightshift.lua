@@ -133,13 +133,6 @@ local theme = lush(function()
     Conditional { fg = main3 }, -- if, then, else, endif, switch, etc.
     Statement { fg = main3 }, -- (preferred) any statement
 
-    -- functions, methods, etc.
-    Function { fg = teal }, -- function name (also: methods for classes)
-    TSMethod { fg = teal }, -- For method calls and definitions.
-    TSFunction { fg = teal }, -- For function (calls and definitions).
-    TSPunctBracket { fg = teal }, -- For brackets and parens.
-    TSFuncBuiltin { fg = teal }, -- For builtin functions: `table.insert` in Lua.
-
     -- specials
     Identifier { fg = main5 }, -- (preferred) any variable name
     Operator { fg = main6 }, -- "sizeof", "+", "*", etc.
@@ -155,16 +148,24 @@ local theme = lush(function()
     CursorLineNr { fg = LineNr.fg.lighten(30) }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 
     -- window decorations
-    VertSplit { fg = bg.darken(100) }, -- the column separating vertically split windows
     EndOfBuffer { fg = main2 }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
-    ColorColumn { bg = String.fg.darken(30) }, -- used for the columns set with 'colorcolumn'
     IndentBlanklineChar { fg = String.fg.darken(60) },
+    VertSplit { fg = bg.darken(100) }, -- the column separating vertically split windows
+
+    ColorColumn { bg = String.fg.darken(30) }, -- used for the columns set with 'colorcolumn'
 
     -- menus (inc. completion menu)
     Pmenu { fg = VertSplit.fg.lighten(60), bg = Normal.bg.darken(30) }, -- Popup menu: normal item.
     PmenuSel { fg = String.fg.darken(10), bg = Pmenu.bg }, -- Popup menu: selected item.
     PmenuSbar { bg = bg.lighten(15) }, -- Popup menu: scrollbar.
     PmenuThumb { bg = bg.lighten(30) }, -- Popup menu: Thumb of the scrollbar.
+
+    -- functions, methods, etc.
+    Function { fg = teal }, -- function name (also: methods for classes)
+    TSMethod { fg = teal }, -- For method calls and definitions.
+    TSFunction { fg = teal }, -- For function (calls and definitions).
+    TSPunctBracket { fg = teal }, -- For brackets and parens.
+    TSFuncBuiltin { fg = teal }, -- For builtin functions: `table.insert` in Lua.
 
     -- cursor
     --Cursor { fg = String.fg, bg = hsl("#ff0000") }, -- character under the cursor
