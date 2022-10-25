@@ -94,16 +94,21 @@ local theme = lush(function()
   local accent4_1 = hsl("#1d2340")
   local accent0_1 = hsl("#5f5faf")
   local accent5_2 = hsl("#7aa2f7")
-  local accent1_4 = hsl("#87d7d7")
+  local teal = hsl("#87d7d7")
 
   -- main colours
   local fg = accent4_1.lighten(15)
-  local bg = accent4_1
+  local bg = hsl("#1d2340")
 
-  local main0 = fg.lighten(80)
-  local main1 = accent0_1.lighten(35)
-  local main2 = fg.lighten(20)
-  local main3 = fg.lighten(80).darken(60)
+  local main5 = hsl("#bfbfdf")
+  local main0 = hsl("#ced2e9")
+  local main6 = hsl("#b9bfdf")
+
+  local main1 = hsl("#9696ca")
+  local main7 = hsl("#5d6cb6")
+  local main2 = hsl("#46549b")
+  local main3 = hsl("#46468b")
+  local main4 = hsl("#364178")
 
   -- TODO, FIXME, WARN, etc.
   local hint  = blue
@@ -121,27 +126,27 @@ local theme = lush(function()
     String { fg = main0 }, -- a string constant: "this is a string"
     Normal { fg = main1, bg = bg }, -- normal text
     Comment { fg = main2 }, -- any comment
-    Include { fg = main3 }, -- preprocessor #include
+    Include { fg = main4 }, -- preprocessor #include
 
     -- def, etc.
-    Keyword { fg = Normal.fg.darken(40) }, --  any other keyword
+    Keyword { fg = main3 }, --  any other keyword
 
     -- if, etc.
-    TSField { fg = Normal.fg.lighten(40) }, -- For fields.
-    Conditional { fg = Keyword.fg }, -- if, then, else, endif, switch, etc.
-    Statement { fg = Keyword.fg }, -- (preferred) any statement
+    TSField { fg = main5 }, -- For fields.
+    Conditional { fg = main3 }, -- if, then, else, endif, switch, etc.
+    Statement { fg = main3 }, -- (preferred) any statement
 
     -- functions, methods, etc.
-    Function { fg = accent1_4 }, -- function name (also: methods for classes)
-    TSMethod { fg = Function.fg }, -- For method calls and definitions.
-    TSFunction { fg = Function.fg }, -- For function (calls and definitions).
-    TSPunctBracket { fg = Function.fg }, -- For brackets and parens.
-    TSFuncBuiltin { fg = Function.fg }, -- For builtin functions: `table.insert` in Lua.
+    Function { fg = teal }, -- function name (also: methods for classes)
+    TSMethod { fg = teal }, -- For method calls and definitions.
+    TSFunction { fg = teal }, -- For function (calls and definitions).
+    TSPunctBracket { fg = teal }, -- For brackets and parens.
+    TSFuncBuiltin { fg = teal }, -- For builtin functions: `table.insert` in Lua.
 
     -- specials
-    Identifier { fg = Function.fg.saturation(5).lighten(20) }, -- (preferred) any variable name
-    Operator { fg = Include.fg.lighten(70) }, -- "sizeof", "+", "*", etc.
-    Special { fg = Include.fg.lighten(30) }, -- (preferred) any special symbol
+    Identifier { fg = main5 }, -- (preferred) any variable name
+    Operator { fg = main6 }, -- "sizeof", "+", "*", etc.
+    Special { fg = main7 }, -- (preferred) any special symbol
 
     -- search
     MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
@@ -151,17 +156,17 @@ local theme = lush(function()
     Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
 
     -- this has to be Normal because there's no way to distinguish it from normal variables
-    TSParameter { fg = Normal.fg }, -- For parameters of a function.
-    Type { fg = accent1_4.hue(200).saturation(90) }, -- (preferred) int, long, char, etc.
+    TSParameter { fg = main1 }, -- For parameters of a function.
+    Type { fg = teal.hue(200).saturation(90) }, -- (preferred) int, long, char, etc.
 
     -- left margin
-    SignColumn { bg = Normal.bg }, -- column where |signs| are displayed
+    SignColumn { bg = bg }, -- column where |signs| are displayed
     LineNr { fg = String.fg.darken(40) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     CursorLineNr { fg = LineNr.fg.lighten(30) }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 
     -- window decorations
     VertSplit { fg = bg.darken(100) }, -- the column separating vertically split windows
-    EndOfBuffer { fg = Comment.fg }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+    EndOfBuffer { fg = main2 }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     ColorColumn { bg = String.fg.darken(30) }, -- used for the columns set with 'colorcolumn'
     IndentBlanklineChar { fg = String.fg.darken(60) },
 
@@ -172,15 +177,16 @@ local theme = lush(function()
     PmenuThumb { bg = bg.lighten(30) }, -- Popup menu: Thumb of the scrollbar.
 
     -- cursor
-    Cursor { fg = String.fg, bg = hsl("#ff0000") }, -- character under the cursor
+    --Cursor { fg = String.fg, bg = hsl("#ff0000") }, -- character under the cursor
     lCursor {}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
     CursorIM {}, -- like Cursor, but used when in IME mode |CursorIM|
     CursorLine { bg = bg.lighten(5) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     CursorColumn { bg = CursoLine.bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     Visual { bg = CursorLine.bg.lighten(4) }, -- Visual mode selection
 
-    Error { fg = yellow }, -- (preferred) any erroneous construct
-    Todo { fg = yellow }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    WarningMsg { fg = black, bg = error }, -- warning messages
+    Error { fg = black, bg = error }, -- (preferred) any erroneous construct
+    Todo { fg = black, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     LspDiagnosticsDefaultWarning { fg = warn, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
