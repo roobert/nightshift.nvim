@@ -1,14 +1,16 @@
 -- stylua: ignore start
 
 local colors = {
+  white = "#dddddd",
+  grey  = "#888888",
+  black = "#000000",
+
   -- slightly darkened accent colors
-  white     = "#dddddd",
-  grey      = "#888888",
-  black     = "#000000",
-  green     = "#88cccc",
-  blue      = "#88bbee",
-  yellow    = "#ffeedd",
-  red       = "#ee9999",
+  green  = "#88cccc",
+  blue   = "#88bbee",
+  yellow = "#ffeedd",
+  red    = "#ee9999",
+
   dark_blue = "#232a4d",
   mid_blue  = "#232a4d",
 }
