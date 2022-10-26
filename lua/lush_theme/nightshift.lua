@@ -12,18 +12,6 @@ local theme = lush(function()
   local black = hsl("#111111")
   local bg    = hsl("#1d2340")
 
-  local color01    = hsl("#ced2e9")
-  local main5      = hsl("#bfbfdf")
-  local main6      = hsl("#b9bfdf")
-  local main1      = hsl("#9696ca")
-  local main9      = hsl("#8791c9")
-  local main7      = hsl("#5d6cb6")
-  local main8      = hsl("#5664b3")
-  local main2      = hsl("#46549b")
-  local main3      = hsl("#46468b")
-  local main4      = hsl("#364178")
-  local cursorline = hsl("#232a4d")
-
   local color01 = hsl("#ced2e9")
   local color02 = hsl("#bfbfdf")
   local color03 = hsl("#b9bfdf")
@@ -35,7 +23,6 @@ local theme = lush(function()
   local color09 = hsl("#46468b")
   local color10 = hsl("#364178")
   local color11 = hsl("#232a4d")
-
 
   -- accent colors
   local accent_red    = hsl("#ffaaaa")
@@ -68,59 +55,54 @@ local theme = lush(function()
   local warn  = accent_yellow
   local error = accent_red
 
-  -- diff stuff
-  local diff_change = blue
-  local diff_add    = green
-  local diff_remove = red
-
   return {
     -- main syntax
     String { fg = color01 }, -- a string constant: "this is a string"
-    Normal { fg = main1, bg = bg }, -- normal text
-    Comment { fg = main2 }, -- any comment
-    Include { fg = main4 }, -- preprocessor #include
+    Normal { fg = color04, bg = bg }, -- normal text
+    Comment { fg = color08 }, -- any comment
+    Include { fg = color10 }, -- preprocessor #include
 
     -- def, etc.
-    Keyword { fg = main3 }, --  any other keyword
+    Keyword { fg = color09 }, --  any other keyword
 
     -- if, etc.
-    TSField { fg = main5 }, -- For fields.
-    Conditional { fg = main3 }, -- if, then, else, endif, switch, etc.
-    Statement { fg = main3 }, -- (preferred) any statement
+    TSField { fg = color02 }, -- For fields.
+    Conditional { fg = color09 }, -- if, then, else, endif, switch, etc.
+    Statement { fg = color09 }, -- (preferred) any statement
 
     -- specials
-    Identifier { fg = main5 }, -- (preferred) any variable name
-    Operator { fg = main6 }, -- "sizeof", "+", "*", etc.
-    Special { fg = main7 }, -- (preferred) any special symbol
+    Identifier { fg = color02 }, -- (preferred) any variable name
+    Operator { fg = color03 }, -- "sizeof", "+", "*", etc.
+    Special { fg = color06 }, -- (preferred) any special symbol
 
     -- this has to be Normal because there's no way to distinguish it from normal variables
-    TSParameter { fg = main1 }, -- For parameters of a function.
+    TSParameter { fg = color04 }, -- For parameters of a function.
     Type { fg = accent_blue }, -- (preferred) int, long, char, etc.
 
     -- left margin
     SignColumn { bg = bg }, -- column where |signs| are displayed
-    LineNr { fg = main8 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = main9 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    LineNr { fg = color07 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = color05 }, -- Like LineNr when 'color11' or 'relativenumber' is set for the cursor line.
 
     -- window decorations
-    EndOfBuffer { fg = main2 }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
-    IndentBlanklineChar { fg = main4 },
-    VertSplit { fg = main1 }, -- the column separating vertically split windows, also used by lsp popup outline
+    EndOfBuffer { fg = color08 }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+    IndentBlanklineChar { fg = color10 },
+    VertSplit { fg = color04 }, -- the column separating vertically split windows, also used by lsp popup outline
 
     -- menus (inc. completion menu)
     Pmenu { fg = color01, bg = bg }, -- Popup menu: normal item.
     PmenuSel { fg = color01, bg = bg }, -- Popup menu: selected item.
-    PmenuSbar { bg = main4 }, -- Popup menu: scrollbar.
-    PmenuThumb { bg = main2 }, -- Popup menu: Thumb of the scrollbar.
+    PmenuSbar { bg = color10 }, -- Popup menu: scrollbar.
+    PmenuThumb { bg = color08 }, -- Popup menu: Thumb of the scrollbar.
 
     -- cursor line / visual selection backgrounds
     --Cursor { fg = String.fg, bg = red }, -- character under the cursor - unused?
     lCursor {}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
     CursorIM {}, -- like Cursor, but used when in IME mode |CursorIM|
-    CursorLine { bg = cursorline }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorColumn { bg = cursorline }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    ColorColumn { bg = cursorline }, -- used for the columns set with 'colorcolumn'
-    Visual { bg = cursorline.lighten(4) }, -- Visual mode selection
+    CursorLine { bg = color11 }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn { bg = color11 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    ColorColumn { bg = color11 }, -- used for the columns set with 'colorcolumn'
+    Visual { bg = color11.lighten(4) }, -- Visual mode selection
 
     -- functions, methods, etc.
     Function { fg = accent_green }, -- function name (also: methods for classes)
@@ -149,15 +131,15 @@ local theme = lush(function()
     Todo { fg = black, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- diagnostics
-    LspDiagnosticsDefaultWarning { fg = warn, bg = cursorline }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultInformation { fg = info, bg = cursorline }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsVirtualTextError { fg = error, bg = cursorline }, -- Used for "Error" diagnostic virtual text
-    LspDiagnosticsDefaultHint { fg = hint, bg = cursorline }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultWarning { fg = warn, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultInformation { fg = info, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsVirtualTextError { fg = error, bg = color11 }, -- Used for "Error" diagnostic virtual text
+    LspDiagnosticsDefaultHint { fg = hint, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
     -- diff stuff
-    DiffAdd { fg = diff_add }, -- diff mode: Added line |diff.txt|
-    DiffChange { fg = diff_change }, -- diff mode: Changed line |diff.txt|
-    DiffDelete { fg = diff_remove }, -- diff mode: Deleted line |diff.txt|
+    DiffAdd { fg = green }, -- diff mode: Added line |diff.txt|
+    DiffChange { fg = blue }, -- diff mode: Changed line |diff.txt|
+    DiffDelete { fg = red }, -- diff mode: Deleted line |diff.txt|
 
     TSURI { fg = color01 } -- Any URI like a link or email.
 
