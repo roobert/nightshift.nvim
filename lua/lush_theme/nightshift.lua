@@ -12,7 +12,7 @@ local theme = lush(function()
   local black = hsl("#111111")
   local bg    = hsl("#1d2340")
 
-  local main0      = hsl("#ced2e9")
+  local color01    = hsl("#ced2e9")
   local main5      = hsl("#bfbfdf")
   local main6      = hsl("#b9bfdf")
   local main1      = hsl("#9696ca")
@@ -24,24 +24,49 @@ local theme = lush(function()
   local main4      = hsl("#364178")
   local cursorline = hsl("#232a4d")
 
-  local constant_accent = hsl("#ffa0a0")
-  local teal            = hsl("#87d7d7")
-  local teal2           = hsl("#69c8f7")
+  local color01 = hsl("#ced2e9")
+  local color02 = hsl("#bfbfdf")
+  local color03 = hsl("#b9bfdf")
+  local color04 = hsl("#9696ca")
+  local color05 = hsl("#8791c9")
+  local color06 = hsl("#5d6cb6")
+  local color07 = hsl("#5664b3")
+  local color08 = hsl("#46549b")
+  local color09 = hsl("#46468b")
+  local color10 = hsl("#364178")
+  local color11 = hsl("#232a4d")
+
+
+  -- accent colors
+  local accent_red    = hsl("#ffaaaa")
+  local accent_blue   = hsl("#99ccff")
+  local accent_green  = hsl("#99dddd")
+  local accent_yellow = hsl("#ffeedd")
 
   -- taken from folke/tokyonight
-  local red         = hsl("#af5f87")
-  local orange      = hsl("#ff9e64")
-  local yellow      = hsl("#e0af68")
-  local lightyellow = hsl("#f5e7d0")
-  local green       = hsl("#5fd75f")
-  local blue        = hsl("#00afff")
-  local lightblue   = hsl("#7aa2f7")
+  local red    = hsl("#af5f87")
+  local blue   = hsl("#00afff")
+  local yellow = hsl("#e0af68")
+  local orange = hsl("#ff9e64")
+  local green  = hsl("#5fd75f")
 
-  -- TODO, FIXME, WARN, etc.
-  local hint  = lightblue
-  local info  = green
-  local warn  = yellow
-  local error = red
+  -- FIXME
+  -- BUG
+  -- WARNING
+  -- TODO
+  -- FIXME
+  -- FIX
+  -- ISSUE
+  -- HACK
+  -- WARN
+  -- PERF
+  -- NOTE
+  -- TEST
+  -- XXX
+  local hint  = accent_blue
+  local info  = accent_green
+  local warn  = accent_yellow
+  local error = accent_red
 
   -- diff stuff
   local diff_change = blue
@@ -50,7 +75,7 @@ local theme = lush(function()
 
   return {
     -- main syntax
-    String { fg = main0 }, -- a string constant: "this is a string"
+    String { fg = color01 }, -- a string constant: "this is a string"
     Normal { fg = main1, bg = bg }, -- normal text
     Comment { fg = main2 }, -- any comment
     Include { fg = main4 }, -- preprocessor #include
@@ -70,7 +95,7 @@ local theme = lush(function()
 
     -- this has to be Normal because there's no way to distinguish it from normal variables
     TSParameter { fg = main1 }, -- For parameters of a function.
-    Type { fg = teal2 }, -- (preferred) int, long, char, etc.
+    Type { fg = accent_blue }, -- (preferred) int, long, char, etc.
 
     -- left margin
     SignColumn { bg = bg }, -- column where |signs| are displayed
@@ -83,8 +108,8 @@ local theme = lush(function()
     VertSplit { fg = main1 }, -- the column separating vertically split windows, also used by lsp popup outline
 
     -- menus (inc. completion menu)
-    Pmenu { fg = main0, bg = bg }, -- Popup menu: normal item.
-    PmenuSel { fg = main0, bg = bg }, -- Popup menu: selected item.
+    Pmenu { fg = color01, bg = bg }, -- Popup menu: normal item.
+    PmenuSel { fg = color01, bg = bg }, -- Popup menu: selected item.
     PmenuSbar { bg = main4 }, -- Popup menu: scrollbar.
     PmenuThumb { bg = main2 }, -- Popup menu: Thumb of the scrollbar.
 
@@ -98,23 +123,23 @@ local theme = lush(function()
     Visual { bg = cursorline.lighten(4) }, -- Visual mode selection
 
     -- functions, methods, etc.
-    Function { fg = teal }, -- function name (also: methods for classes)
-    TSMethod { fg = teal }, -- For method calls and definitions.
-    TSFunction { fg = teal }, -- For function (calls and definitions).
-    TSPunctBracket { fg = teal }, -- For brackets and parens.
-    TSFuncBuiltin { fg = teal }, -- For builtin functions: `table.insert` in Lua.
+    Function { fg = accent_green }, -- function name (also: methods for classes)
+    TSMethod { fg = accent_green }, -- For method calls and definitions.
+    TSFunction { fg = accent_green }, -- For function (calls and definitions).
+    TSPunctBracket { fg = accent_green }, -- For brackets and parens.
+    TSFuncBuiltin { fg = accent_green }, -- For builtin functions: `table.insert` in Lua.
 
     -- constants, numbers, etc.
-    Constant { fg = constant_accent }, -- (preferred) any constant
-    Character { fg = constant_accent }, --  a character constant: 'c', '\n'
-    Number { fg = constant_accent }, --   a number constant: 234, 0xff
-    Boolean { fg = constant_accent }, --  a boolean constant: TRUE, false
-    Float { fg = constant_accent }, --    a floating point constant: 2.3e10
+    Constant { fg = accent_red }, -- (preferred) any constant
+    Character { fg = accent_red }, --  a character constant: 'c', '\n'
+    Number { fg = accent_red }, --   a number constant: 234, 0xff
+    Boolean { fg = accent_red }, --  a boolean constant: TRUE, false
+    Float { fg = accent_red }, --    a floating point constant: 2.3e10
 
     -- search/match
     MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    IncSearch { fg = black, bg = lightyellow }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
-    CurSearch { fg = black, bg = lightyellow },
+    IncSearch { fg = black, bg = accent_yellow }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
+    CurSearch { fg = black, bg = accent_yellow },
     Search { fg = black, bg = yellow },
     Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
 
@@ -134,7 +159,7 @@ local theme = lush(function()
     DiffChange { fg = diff_change }, -- diff mode: Changed line |diff.txt|
     DiffDelete { fg = diff_remove }, -- diff mode: Deleted line |diff.txt|
 
-    TSURI { fg = main0 } -- Any URI like a link or email.
+    TSURI { fg = color01 } -- Any URI like a link or email.
 
     -- extra syntax (unused)
     -- NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
