@@ -12,6 +12,10 @@ local theme = lush(function()
   local black = hsl("#111111")
   local bg    = hsl("#1d2340")
 
+  -- FIXME - how many uses of each of these colors are there
+  -- FIXME - diff view
+  -- FIXME - adjust this color gradient
+  -- FIXME - the status bar
   local color01 = hsl("#ced2e9")
   local color02 = hsl("#bfbfdf")
   local color03 = hsl("#b9bfdf")
@@ -279,85 +283,5 @@ end)
 
 -- return our parsed theme for extension or use else where.
 return theme
-
---  bg_dark        = hsl("#1f2335")),
---  bg             = hsl("#24283b")),
---  bg_highlight   = hsl("#292e42")),
---  terminal_black = hsl("#414868")),
---  fg             = hsl("#c0caf5")),
---  fg_dark        = hsl("#a9b1d6"),
---  fg_gutter      = hsl("#3b4261"),
---  dark3          = hsl("#545c7e"),
---  comment        = hsl("#565f89"),
---  dark5          = hsl("#737aa2"),
-
---  blue           = hsl("#7aa2f7"),
---  blue0          = hsl("#3d59a1"),
-
---  cyan           = hsl("#7dcfff"),
---  blue1          = hsl("#2ac3de"),
---  blue2          = hsl("#0db9d7"),
---  blue5          = hsl("#89ddff"),
---  blue6          = hsl("#B4F9F8"),
---  blue7          = hsl("#394b70"),
---  purple         = hsl("#9d7cd8"),
---  magenta        = hsl("#bb9af7"),
---  orange         = hsl("#ff9e64"),
---  yellow         = hsl("#e0af68"),
-
---  green          = hsl("#9ece6a"),
---  green1         = hsl("#73daca"),
---  green2         = hsl("#41a6b5"),
---  teal           = hsl("#1abc9c"),
-
--- local white     = hsl("#eeeeee")
-
--- local muted0    = hsl("#585858")
--- local muted1    = hsl("#767676")
--- local muted2    = hsl("#949494")
--- local muted3    = hsl("#b2b2b2")
--- local muted4    = hsl("#d0d0d0")
--- local muted5    = hsl("#eeeeee")
--- local muted6    = hsl("#ffffff")
-
--- local accent0_0 = hsl("#5f5f87")
--- local accent0_1 = hsl("#5f5faf")
--- local accent0_2 = hsl("#bfbfee")
--- local accent0_3 = hsl("#dfe2fb")
-
--- local accent1_0 = hsl("#8700d7")
--- local accent1_1 = hsl("#875fd7")
--- local accent1_2 = hsl("#8787d7")
--- local accent1_3 = hsl("#87afd7")
--- local accent1_4 = hsl("#87d7d7")
--- local accent1_5 = hsl("#87ffd7")
-
--- local accent2_0 = hsl("#8700ff")
--- local accent2_1 = hsl("#875fff")
--- local accent2_2 = hsl("#8787ff")
--- local accent2_3 = hsl("#87afff")
--- local accent2_4 = hsl("#87d7ff")
--- local accent2_5 = hsl("#87ffff")
-
--- local accent3_0 = hsl("#1f2335")
--- local accent3_1 = hsl("#24283b")
--- local accent3_2 = hsl("#292e42")
--- local accent3_3 = hsl("#3b4261")
--- local accent3_4 = hsl("#414868")
--- local accent3_5 = hsl("#545c7e")
--- local accent3_6 = hsl("#565f89")
--- local accent3_7 = hsl("#737aa2")
--- local accent3_8 = hsl("#a9b1d6")
--- local accent3_9 = hsl("#c0caf5")
-
--- local accent4_0 = hsl("#000030")
--- local accent4_1 = hsl("#1d2340")
--- local accent4_2 = hsl("#242c52")
-
--- local accent5_0 = hsl("#5f87af")
--- local accent5_1 = hsl("#5f87d7")
--- local accent5_2 = hsl("#7aa2f7")
--- local accent5_3 = hsl("#3d59a1")
--- local accent5_4 = hsl("#2e3c80")
 
 -- vi:nowrap
