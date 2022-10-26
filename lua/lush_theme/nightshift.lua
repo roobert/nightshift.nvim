@@ -1,119 +1,49 @@
--- RELATIVITY
+-- Nightshift - github.com/roobert/nightshift.vim
+--
+-- To print a color:
+-- :lua string.format("#%6x", vim.api.nvim_get_hl_by_name('Number', {}).foreground)
+
 
 local lush = require('lush')
 local hsl = lush.hsl
 
 local theme = lush(function()
-  --  bg_dark        = hsl("#1f2335")),
-  --  bg             = hsl("#24283b")),
-  --  bg_highlight   = hsl("#292e42")),
-  --  terminal_black = hsl("#414868")),
-  --  fg             = hsl("#c0caf5")),
-  --  fg_dark        = hsl("#a9b1d6"),
-  --  fg_gutter      = hsl("#3b4261"),
-  --  dark3          = hsl("#545c7e"),
-  --  comment        = hsl("#565f89"),
-  --  dark5          = hsl("#737aa2"),
-
-  --  blue           = hsl("#7aa2f7"),
-  --  blue0          = hsl("#3d59a1"),
-
-  --  cyan           = hsl("#7dcfff"),
-  --  blue1          = hsl("#2ac3de"),
-  --  blue2          = hsl("#0db9d7"),
-  --  blue5          = hsl("#89ddff"),
-  --  blue6          = hsl("#B4F9F8"),
-  --  blue7          = hsl("#394b70"),
-  --  purple         = hsl("#9d7cd8"),
-  --  magenta        = hsl("#bb9af7"),
-  --  orange         = hsl("#ff9e64"),
-  --  yellow         = hsl("#e0af68"),
-
-  --  green          = hsl("#9ece6a"),
-  --  green1         = hsl("#73daca"),
-  --  green2         = hsl("#41a6b5"),
-  --  teal           = hsl("#1abc9c"),
-
-  -- local white     = hsl("#eeeeee")
-
-  -- local muted0    = hsl("#585858")
-  -- local muted1    = hsl("#767676")
-  -- local muted2    = hsl("#949494")
-  -- local muted3    = hsl("#b2b2b2")
-  -- local muted4    = hsl("#d0d0d0")
-  -- local muted5    = hsl("#eeeeee")
-  -- local muted6    = hsl("#ffffff")
-
-  -- local accent0_0 = hsl("#5f5f87")
-  -- local accent0_1 = hsl("#5f5faf")
-  -- local accent0_2 = hsl("#bfbfee")
-  -- local accent0_3 = hsl("#dfe2fb")
-
-  -- local accent1_0 = hsl("#8700d7")
-  -- local accent1_1 = hsl("#875fd7")
-  -- local accent1_2 = hsl("#8787d7")
-  -- local accent1_3 = hsl("#87afd7")
-  -- local accent1_4 = hsl("#87d7d7")
-  -- local accent1_5 = hsl("#87ffd7")
-
-  -- local accent2_0 = hsl("#8700ff")
-  -- local accent2_1 = hsl("#875fff")
-  -- local accent2_2 = hsl("#8787ff")
-  -- local accent2_3 = hsl("#87afff")
-  -- local accent2_4 = hsl("#87d7ff")
-  -- local accent2_5 = hsl("#87ffff")
-
-  -- local accent3_0 = hsl("#1f2335")
-  -- local accent3_1 = hsl("#24283b")
-  -- local accent3_2 = hsl("#292e42")
-  -- local accent3_3 = hsl("#3b4261")
-  -- local accent3_4 = hsl("#414868")
-  -- local accent3_5 = hsl("#545c7e")
-  -- local accent3_6 = hsl("#565f89")
-  -- local accent3_7 = hsl("#737aa2")
-  -- local accent3_8 = hsl("#a9b1d6")
-  -- local accent3_9 = hsl("#c0caf5")
-
-  -- local accent4_0 = hsl("#000030")
-  -- local accent4_1 = hsl("#1d2340")
-  -- local accent4_2 = hsl("#242c52")
-
-  -- local accent5_0 = hsl("#5f87af")
-  -- local accent5_1 = hsl("#5f87d7")
-  -- local accent5_2 = hsl("#7aa2f7")
-  -- local accent5_3 = hsl("#3d59a1")
-  -- local accent5_4 = hsl("#2e3c80")
-
   -- main colours
   local black = hsl("#111111")
   local bg    = hsl("#1d2340")
 
+  local main0      = hsl("#ced2e9")
+  local main5      = hsl("#bfbfdf")
+  local main6      = hsl("#b9bfdf")
+  local main1      = hsl("#9696ca")
+  local main9      = hsl("#8791c9")
+  local main7      = hsl("#5d6cb6")
+  local main8      = hsl("#5664b3")
+  local main2      = hsl("#46549b")
+  local main3      = hsl("#46468b")
+  local main4      = hsl("#364178")
+  local cursorline = hsl("#232a4d")
+
   local constant_accent = hsl("#ffa0a0")
   local teal            = hsl("#87d7d7")
+  local teal2           = hsl("#69c8f7")
 
-  local main5 = hsl("#bfbfdf")
-  local main0 = hsl("#ced2e9")
-  local main6 = hsl("#b9bfdf")
-
-  local main1 = hsl("#9696ca")
-  local main7 = hsl("#5d6cb6")
-  local main2 = hsl("#46549b")
-  local main3 = hsl("#46468b")
-  local main4 = hsl("#364178")
-
-  local red    = hsl("#af5f87")
-  local orange = hsl("#ff9e64")
-  local yellow = hsl("#e0af68")
-  local green  = hsl("#5fd75f")
-  local blue   = hsl("#00afff")
+  -- taken from folke/tokyonight
+  local red         = hsl("#af5f87")
+  local orange      = hsl("#ff9e64")
+  local yellow      = hsl("#e0af68")
+  local lightyellow = hsl("#f5e7d0")
+  local green       = hsl("#5fd75f")
+  local blue        = hsl("#00afff")
+  local lightblue   = hsl("#7aa2f7")
 
   -- TODO, FIXME, WARN, etc.
-  local hint  = blue
-  --local hint  = hsl("#7aa2f7").lighten(10)
+  local hint  = lightblue
   local info  = green
   local warn  = yellow
   local error = red
 
+  -- diff stuff
   local diff_change = blue
   local diff_add    = green
   local diff_remove = red
@@ -140,25 +70,32 @@ local theme = lush(function()
 
     -- this has to be Normal because there's no way to distinguish it from normal variables
     TSParameter { fg = main1 }, -- For parameters of a function.
-    Type { fg = teal.hue(200).saturation(90) }, -- (preferred) int, long, char, etc.
+    Type { fg = teal2 }, -- (preferred) int, long, char, etc.
 
     -- left margin
     SignColumn { bg = bg }, -- column where |signs| are displayed
-    LineNr { fg = String.fg.darken(40) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = LineNr.fg.lighten(30) }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    LineNr { fg = main8 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = main9 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 
     -- window decorations
     EndOfBuffer { fg = main2 }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
-    IndentBlanklineChar { fg = String.fg.darken(60) },
-    VertSplit { fg = bg.darken(100) }, -- the column separating vertically split windows
-
-    ColorColumn { bg = String.fg.darken(30) }, -- used for the columns set with 'colorcolumn'
+    IndentBlanklineChar { fg = main4 },
+    VertSplit { fg = main1 }, -- the column separating vertically split windows, also used by lsp popup outline
 
     -- menus (inc. completion menu)
-    Pmenu { fg = VertSplit.fg.lighten(60), bg = Normal.bg.darken(30) }, -- Popup menu: normal item.
-    PmenuSel { fg = String.fg.darken(10), bg = Pmenu.bg }, -- Popup menu: selected item.
-    PmenuSbar { bg = bg.lighten(15) }, -- Popup menu: scrollbar.
-    PmenuThumb { bg = bg.lighten(30) }, -- Popup menu: Thumb of the scrollbar.
+    Pmenu { fg = main0, bg = bg }, -- Popup menu: normal item.
+    PmenuSel { fg = main0, bg = bg }, -- Popup menu: selected item.
+    PmenuSbar { bg = main4 }, -- Popup menu: scrollbar.
+    PmenuThumb { bg = main2 }, -- Popup menu: Thumb of the scrollbar.
+
+    -- cursor line / visual selection backgrounds
+    --Cursor { fg = String.fg, bg = red }, -- character under the cursor - unused?
+    lCursor {}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM {}, -- like Cursor, but used when in IME mode |CursorIM|
+    CursorLine { bg = cursorline }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn { bg = cursorline }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    ColorColumn { bg = cursorline }, -- used for the columns set with 'colorcolumn'
+    Visual { bg = cursorline.lighten(4) }, -- Visual mode selection
 
     -- functions, methods, etc.
     Function { fg = teal }, -- function name (also: methods for classes)
@@ -167,14 +104,7 @@ local theme = lush(function()
     TSPunctBracket { fg = teal }, -- For brackets and parens.
     TSFuncBuiltin { fg = teal }, -- For builtin functions: `table.insert` in Lua.
 
-    -- cursor
-    --Cursor { fg = String.fg, bg = hsl("#ff0000") }, -- character under the cursor
-    lCursor {}, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM {}, -- like Cursor, but used when in IME mode |CursorIM|
-    CursorLine { bg = bg.lighten(5) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorColumn { bg = CursoLine.bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    Visual { bg = CursorLine.bg.lighten(4) }, -- Visual mode selection
-
+    -- constants, numbers, etc.
     Constant { fg = constant_accent }, -- (preferred) any constant
     Character { fg = constant_accent }, --  a character constant: 'c', '\n'
     Number { fg = constant_accent }, --   a number constant: 234, 0xff
@@ -183,8 +113,8 @@ local theme = lush(function()
 
     -- search/match
     MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    IncSearch { fg = black, bg = yellow.lighten(70) }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
-    CurSearch { fg = black, bg = yellow.lighten(70) },
+    IncSearch { fg = black, bg = lightyellow }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
+    CurSearch { fg = black, bg = lightyellow },
     Search { fg = black, bg = yellow },
     Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
 
@@ -194,10 +124,10 @@ local theme = lush(function()
     Todo { fg = black, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- diagnostics
-    LspDiagnosticsDefaultWarning { fg = warn, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultInformation { fg = info, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsVirtualTextError { fg = error, bg = CursorLine.bg }, -- Used for "Error" diagnostic virtual text
-    LspDiagnosticsDefaultHint { fg = hint, bg = CursorLine.bg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultWarning { fg = warn, bg = cursorline }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultInformation { fg = info, bg = cursorline }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsVirtualTextError { fg = error, bg = cursorline }, -- Used for "Error" diagnostic virtual text
+    LspDiagnosticsDefaultHint { fg = hint, bg = cursorline }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
     -- diff stuff
     DiffAdd { fg = diff_add }, -- diff mode: Added line |diff.txt|
@@ -342,5 +272,85 @@ end)
 
 -- return our parsed theme for extension or use else where.
 return theme
+
+--  bg_dark        = hsl("#1f2335")),
+--  bg             = hsl("#24283b")),
+--  bg_highlight   = hsl("#292e42")),
+--  terminal_black = hsl("#414868")),
+--  fg             = hsl("#c0caf5")),
+--  fg_dark        = hsl("#a9b1d6"),
+--  fg_gutter      = hsl("#3b4261"),
+--  dark3          = hsl("#545c7e"),
+--  comment        = hsl("#565f89"),
+--  dark5          = hsl("#737aa2"),
+
+--  blue           = hsl("#7aa2f7"),
+--  blue0          = hsl("#3d59a1"),
+
+--  cyan           = hsl("#7dcfff"),
+--  blue1          = hsl("#2ac3de"),
+--  blue2          = hsl("#0db9d7"),
+--  blue5          = hsl("#89ddff"),
+--  blue6          = hsl("#B4F9F8"),
+--  blue7          = hsl("#394b70"),
+--  purple         = hsl("#9d7cd8"),
+--  magenta        = hsl("#bb9af7"),
+--  orange         = hsl("#ff9e64"),
+--  yellow         = hsl("#e0af68"),
+
+--  green          = hsl("#9ece6a"),
+--  green1         = hsl("#73daca"),
+--  green2         = hsl("#41a6b5"),
+--  teal           = hsl("#1abc9c"),
+
+-- local white     = hsl("#eeeeee")
+
+-- local muted0    = hsl("#585858")
+-- local muted1    = hsl("#767676")
+-- local muted2    = hsl("#949494")
+-- local muted3    = hsl("#b2b2b2")
+-- local muted4    = hsl("#d0d0d0")
+-- local muted5    = hsl("#eeeeee")
+-- local muted6    = hsl("#ffffff")
+
+-- local accent0_0 = hsl("#5f5f87")
+-- local accent0_1 = hsl("#5f5faf")
+-- local accent0_2 = hsl("#bfbfee")
+-- local accent0_3 = hsl("#dfe2fb")
+
+-- local accent1_0 = hsl("#8700d7")
+-- local accent1_1 = hsl("#875fd7")
+-- local accent1_2 = hsl("#8787d7")
+-- local accent1_3 = hsl("#87afd7")
+-- local accent1_4 = hsl("#87d7d7")
+-- local accent1_5 = hsl("#87ffd7")
+
+-- local accent2_0 = hsl("#8700ff")
+-- local accent2_1 = hsl("#875fff")
+-- local accent2_2 = hsl("#8787ff")
+-- local accent2_3 = hsl("#87afff")
+-- local accent2_4 = hsl("#87d7ff")
+-- local accent2_5 = hsl("#87ffff")
+
+-- local accent3_0 = hsl("#1f2335")
+-- local accent3_1 = hsl("#24283b")
+-- local accent3_2 = hsl("#292e42")
+-- local accent3_3 = hsl("#3b4261")
+-- local accent3_4 = hsl("#414868")
+-- local accent3_5 = hsl("#545c7e")
+-- local accent3_6 = hsl("#565f89")
+-- local accent3_7 = hsl("#737aa2")
+-- local accent3_8 = hsl("#a9b1d6")
+-- local accent3_9 = hsl("#c0caf5")
+
+-- local accent4_0 = hsl("#000030")
+-- local accent4_1 = hsl("#1d2340")
+-- local accent4_2 = hsl("#242c52")
+
+-- local accent5_0 = hsl("#5f87af")
+-- local accent5_1 = hsl("#5f87d7")
+-- local accent5_2 = hsl("#7aa2f7")
+-- local accent5_3 = hsl("#3d59a1")
+-- local accent5_4 = hsl("#2e3c80")
 
 -- vi:nowrap
