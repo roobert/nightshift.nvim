@@ -14,8 +14,8 @@ let g:colors_name="nightshift"
 "
 " The performance impact of this call can be measured in the hundreds of
 " *nanoseconds* and such could be considered "production safe".
-lua package.loaded['lush_theme.nightshift'] = nil
+lua package.loaded['nightshift.theme'] = nil
 
 " include our theme file and pass it to lush to apply
-lua require('lush')(require('lush_theme.nightshift'))
+lua require('lush')(require('nightshift.theme'))
 
