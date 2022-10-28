@@ -41,19 +41,25 @@ local theme = lush(function()
   local orange = hsl("#ff9e64")
   local green  = hsl("#5fd75f")
 
+  -- Highlighting for:
+  -- FIXME:
+  -- some fixme text
+  --
+  -- WARNING:
+  -- some warning text
+  --
+  -- NOTE:
+  -- some note text
+  --
+  -- TODO:
+  -- some todo text
+
+  -- Without suffixed colon:
   -- FIXME
-  -- BUG
   -- WARNING
-  -- TODO
-  -- FIXME
-  -- FIX
-  -- ISSUE
-  -- HACK
-  -- WARN
-  -- PERF
   -- NOTE
-  -- TEST
-  -- XXX
+  -- TODO
+
   local hint  = accent_blue
   local info  = accent_green
   local warn  = accent_yellow
@@ -130,15 +136,20 @@ local theme = lush(function()
     Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
 
     -- TODO, FIXME, etc.
-    WarningMsg { fg = black, bg = error }, -- warning messages
+    WarningMsg { fg = black, bg = warn }, -- warning messages
     Error { fg = black, bg = error }, -- (preferred) any erroneous construct
     Todo { fg = black, bg = hint }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
+    DiagnosticInfo { fg = info },
+    DiagnosticHint { fg = hint },
+    DiagnosticWarning { fg = warn },
+    DiagnosticError { fg = error },
+
     -- diagnostics
-    LspDiagnosticsDefaultWarning { fg = warn, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultInformation { fg = info, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsVirtualTextError { fg = error, bg = color11 }, -- Used for "Error" diagnostic virtual text
     LspDiagnosticsDefaultHint { fg = hint, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultWarning { fg = warn, bg = color11 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsVirtualTextError { fg = error, bg = color11 }, -- Used for "Error" diagnostic virtual text
 
     -- diff stuff
     DiffAdd { fg = green }, -- diff mode: Added line |diff.txt|
