@@ -17,3 +17,8 @@ use { "roobert/nightshift.vim", requires = "rktjmp/lush.nvim" }
 ```
 colorscheme nightshift
 ```
+
+## :snake: Supported Plugins
+
+* Lualine
+* Trouble
