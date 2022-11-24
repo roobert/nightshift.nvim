@@ -1,6 +1,6 @@
 # :crescent_moon: Nightshift
 
-A dark theme with colors from the night shift.
+A dark theme with low-contrast bluish-purple gradient.
 
 ## :dragon: Preview
 
