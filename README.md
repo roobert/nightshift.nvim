@@ -1,7 +1,5 @@
 # :first_quarter_moon: Nightshift
 
-## About
-
 A dark theme with colors from the night shift.
 
 ## Preview
