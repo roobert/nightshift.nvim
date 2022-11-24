@@ -1,4 +1,4 @@
-# :crescent_moon: Nightshift
+# :sparkles: Nightshift
 
 A dark theme with low-contrast bluish-purple gradient.
 
