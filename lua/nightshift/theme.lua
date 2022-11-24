@@ -274,7 +274,7 @@ local theme = lush(function()
     -- TSPunctDelimiter     { }, -- For delimiters ie: `.`
     -- TSPunctSpecial       { }, -- For special punctutation that does not fall in the catagories before.
     -- TSRepeat             { }, -- For keywords related to loops.
-    -- TSString             { fg = String.fg}, -- For strings.
+    -- TSString             { }, -- For strings.
     -- TSStringRegex        { }, -- For regexes.
     -- TSStringEscape       { }, -- For escape characters within a string.
     -- TSSymbol             { }, -- For identifiers referring to symbols or atoms.
