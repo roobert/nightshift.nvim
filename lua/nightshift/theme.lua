@@ -57,12 +57,6 @@ local theme = lush(function()
   -- TODO:
   -- some todo text
 
-  -- Without suffixed colon:
-  -- FIXME
-  -- WARNING
-  -- NOTE
-  -- TODO
-
   local hint  = accent_blue
   local info  = accent_green
   local warn  = accent_yellow
@@ -167,12 +161,11 @@ local theme = lush(function()
     PreProc { fg = color05 }, -- (preferred) generic Preprocessor
 
     -- extra syntax (unused)
-    -- NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
-    -- NormalNC     { fg = Pmenu.fg, bg = Pmenu.bg }, -- normal text in non-current windows
-
-    -- Repeat         { fg = String.fg}, --   for, do, while, etc.
-    -- Label          { fg = String.fg}, --    case, default, etc.
-    -- Exception      { fg = String.fg}, --  try, catch, throw
+    -- NormalFloat    { }, -- Normal text in floating windows.
+    -- NormalNC       { }, -- normal text in non-current windows
+    -- Repeat         { }, --   for, do, while, etc.
+    -- Label          { }, --    case, default, etc.
+    -- Exception      { }, --  try, catch, throw
     -- Define         { }, --   preprocessor #define
     -- Macro          { }, --    same as Define
     -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
