@@ -1,4 +1,4 @@
-# Nightshift :first_quarter_moon:
+# :first_quarter_moon: Nightshift
 
 ## About
 
