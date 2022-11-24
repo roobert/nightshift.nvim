@@ -122,9 +122,9 @@ local theme = lush(function()
     -- constants, numbers, etc.
     Constant { fg = accent_red }, -- (preferred) any constant
     Character { fg = accent_red }, --  a character constant: 'c', '\n'
-    Number { fg = accent_red }, --   a number constant: 234, 0xff
-    Boolean { fg = accent_red }, --  a boolean constant: TRUE, false
-    Float { fg = accent_red }, --    a floating point constant: 2.3e10
+    Number { fg = accent_red }, -- a number constant: 234, 0xff
+    Boolean { fg = accent_red }, -- a boolean constant: TRUE, false
+    Float { fg = accent_red }, -- a floating point constant: 2.3e10
 
     -- search/match
     MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
