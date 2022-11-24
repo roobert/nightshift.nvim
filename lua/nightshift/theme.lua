@@ -220,10 +220,10 @@ local theme = lush(function()
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
     -- documentation.
-    -- LspReferenceText                     { fg = Pmenu.fg, bg = Pmenu.bg }, -- used for highlighting "text" references
+    -- LspReferenceText                     { }, -- used for highlighting "text" references
     -- LspReferenceRead                     { }, -- used for highlighting "read" references
     -- LspReferenceWrite                    { }, -- used for highlighting "write" references
-    -- LspDiagnosticsDefaultError           { LspDiagnosticsVirtualTextError.fg }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    -- LspDiagnosticsDefaultError           { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
     -- LspDiagnosticsVirtualTextInformation { }, -- Used for "Information" diagnostic virtual text
     -- LspDiagnosticsVirtualTextHint        { }, -- Used for "Hint" diagnostic virtual text
@@ -249,7 +249,7 @@ local theme = lush(function()
     -- TSAttribute    { }, -- (unstable) TODO: docs
     -- TSBoolean      { }, -- For booleans.
     -- TSCharacter    { }, -- For characters.
-    -- TSComment      { Comment}, -- For comment blocks.
+    -- TSComment      { }, -- For comment blocks.
     -- TSConstructor  { }, -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
     -- TSConditional  { }, -- For keywords related to conditionnals.
     -- TSConstant     { }, -- For constants
@@ -261,7 +261,7 @@ local theme = lush(function()
 
     -- TSFloat              { }, -- For floats.
     -- TSFuncMacro          { }, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    -- TSInclude            { fg = String.fg.lighten(100)}, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+    -- TSInclude            { }, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
     -- TSKeyword            { }, -- For keywords that don't fall in previous categories.
     -- TSKeywordFunction    { }, -- For keywords used to define a fuction.
     -- TSLabel              { }, -- For labels: `label:` in C and `:label:` in Lua.
