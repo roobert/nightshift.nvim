@@ -1,8 +1,13 @@
 -- Nightshift - github.com/roobert/nightshift.vim
+-- Inspired by tokyonight - github.com/folke/tokyonight.nvim
+--
+-- Run :Lushify to see the rendered colors
 --
 -- To print a color:
 -- :lua string.format("#%6x", vim.api.nvim_get_hl_by_name('Number', {}).foreground)
-
+--
+-- Use treesitter-playground and :TSPlaygroundToggle to see the highlight groups applied
+-- to the token under the corsor
 
 local lush = require('lush')
 local hsl = lush.hsl
@@ -12,10 +17,8 @@ local theme = lush(function()
   local black = hsl("#111111")
   local bg    = hsl("#1d2340")
 
-  -- FIXME - how many uses of each of these colors are there
   -- FIXME - diff view
   -- FIXME - adjust this color gradient
-  -- FIXME - the status bar
   local color01 = hsl("#ced2e9")
   local color02 = hsl("#bfbfdf")
   local color03 = hsl("#b9bfdf")
@@ -113,6 +116,7 @@ local theme = lush(function()
     CursorColumn { bg = color11 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     ColorColumn { bg = color11 }, -- used for the columns set with 'colorcolumn'
     Visual { bg = color11.lighten(4) }, -- Visual mode selection
+    StatusLine { bg = CursorLine.bg },
 
     -- functions, methods, etc.
     Function { fg = accent_green }, -- function name (also: methods for classes)
@@ -142,7 +146,8 @@ local theme = lush(function()
 
     DiagnosticInfo { fg = info },
     DiagnosticHint { fg = hint },
-    DiagnosticWarning { fg = warn },
+    DiagnosticWarning { fg = warn.darken(15) },
+    DiagnosticWarn { fg = warn.darken(15) },
     DiagnosticError { fg = error },
 
     -- diagnostics
@@ -159,7 +164,7 @@ local theme = lush(function()
     TSURI { fg = color01 }, -- Any URI like a link or email.
 
     -- used by shebang lines
-    PreProc { fg = accent_blue }, -- (preferred) generic Preprocessor
+    PreProc { fg = color05 }, -- (preferred) generic Preprocessor
 
     -- extra syntax (unused)
     -- NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
