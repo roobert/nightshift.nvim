@@ -156,7 +156,10 @@ local theme = lush(function()
     DiffChange { fg = blue }, -- diff mode: Changed line |diff.txt|
     DiffDelete { fg = red }, -- diff mode: Deleted line |diff.txt|
 
-    TSURI { fg = color01 } -- Any URI like a link or email.
+    TSURI { fg = color01 }, -- Any URI like a link or email.
+
+    -- used by shebang lines
+    PreProc { fg = accent_blue }, -- (preferred) generic Preprocessor
 
     -- extra syntax (unused)
     -- NormalFloat  { fg = Pmenu.fg, bg = Pmenu.bg }, -- Normal text in floating windows.
@@ -165,7 +168,6 @@ local theme = lush(function()
     -- Repeat         { fg = String.fg}, --   for, do, while, etc.
     -- Label          { fg = String.fg}, --    case, default, etc.
     -- Exception      { fg = String.fg}, --  try, catch, throw
-    -- PreProc        { }, -- (preferred) generic Preprocessor
     -- Define         { }, --   preprocessor #define
     -- Macro          { }, --    same as Define
     -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
