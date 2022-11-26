@@ -43,6 +43,7 @@ local theme = lush(function(injected_functions)
   local warn  = accent_orange
   local error = accent_red
 
+  -- NOTE: aiming for something like this with relative colors:
   -- local c01 = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
   -- local c02 = hsl("#364178") -- menu sbar/thumb
   -- local c03 = hsl("#3e4b8a") -- include/function, etc.
@@ -60,8 +61,8 @@ local theme = lush(function(injected_functions)
   -- FIXME:
   -- adjust all this stuff with .rotate() .(de)saturate() and (ligh|dark)en()
 
-  -- local color_main = hsl("#0000ff").rotate(-15).desaturate(50).darken(30)
-  local color_main = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
+  -- local color_main = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
+  local color_main = hsl("#0000ff").rotate(-10).desaturate(75).darken(55)
 
   local c01 = color_main
   local c02 = c01.lighten(10)
@@ -71,7 +72,7 @@ local theme = lush(function(injected_functions)
   local color_secondary = color_main.lighten(30)
 
   local c05 = color_secondary
-  local c06 = c05.lighten(10)
+  local c06 = c05.lighten(20)
   local c07 = c06.lighten(10)
   local c08 = c07.lighten(10)
 
@@ -81,7 +82,7 @@ local theme = lush(function(injected_functions)
   local c10 = c09.lighten(45)
   local c11 = c10.lighten(10)
 
-  -- local accent_primary = color_secondary.saturate(90).lighten(20)
+  local accent_primary = color_main.rotate(10).lighten(75).saturate(90)
 
   return {
     -- main syntax
