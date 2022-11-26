@@ -4,7 +4,7 @@
 -- Run :Lushify to see the rendered colors
 --
 -- To print a color:
--- :lua string.format("#%6x", vim.api.nvim_get_hl_by_name('Number', {}).foreground)
+-- :lua print(string.format("#%6x", vim.api.nvim_get_hl_by_name('Number', {}).foreground))
 --
 -- Use treesitter-playground and :TSPlaygroundToggle to see the highlight groups applied
 -- to the token under the corsor
@@ -12,37 +12,51 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-local theme = lush(function()
+local theme = lush(function(injected_functions)
+  local sym = injected_functions.sym
+
   -- main colours
   local black = hsl("#111111")
   local bg    = hsl("#1d2340")
 
   -- FIXME - diff view
-  -- FIXME - adjust this color gradient
-  local color01 = hsl("#ced2e9")
+  -- local color01 = hsl("#ced2e9")
+  -- local color02 = hsl("#bfbfdf")
+  -- local color03 = hsl("#b9bfdf")
+  -- local color04 = hsl("#9696ca")
+  -- local color05 = hsl("#8791c9")
+  -- local color06 = hsl("#5d6cb6")
+  -- local color07 = hsl("#5664b3")
+  -- local color08 = hsl("#46549b")
+  -- local color09 = hsl("#46468b")
+  -- local color10 = hsl("#364178")
+  -- local color11 = hsl("#232a4d")
+  --
+  -- accent colors
+  -- local accent_red    = hsl("#ffaaaa")
+  -- local accent_blue   = hsl("#99ccff")
+  -- local accent_green  = hsl("#99dddd")
+  -- local accent_yellow = hsl("#ffeedd")
+
+  local color01 = hsl("#d8dbee")
   local color02 = hsl("#bfbfdf")
   local color03 = hsl("#b9bfdf")
-  local color04 = hsl("#9696ca")
-  local color05 = hsl("#8791c9")
-  local color06 = hsl("#5d6cb6")
-  local color07 = hsl("#5664b3")
-  local color08 = hsl("#46549b")
-  local color09 = hsl("#46468b")
+  local color04 = hsl("#9696CA")
+  local color05 = hsl("#8185C2")
+  local color06 = hsl("#6B75BB")
+  local color07 = hsl("#5664B3")
+  local color08 = hsl("#46549B")
+  local color09 = hsl("#3E4B8A")
   local color10 = hsl("#364178")
   local color11 = hsl("#232a4d")
 
-  -- accent colors
-  local accent_red    = hsl("#ffaaaa")
-  local accent_blue   = hsl("#99ccff")
-  local accent_green  = hsl("#99dddd")
-  local accent_yellow = hsl("#ffeedd")
-
-  -- taken from folke/tokyonight
-  local red    = hsl("#af5f87")
-  local blue   = hsl("#00afff")
-  local yellow = hsl("#e0af68")
-  local orange = hsl("#ff9e64")
-  local green  = hsl("#5fd75f")
+  local accent_red    = hsl("#ffb3ba")
+  local accent_orange = hsl("#ffdfba")
+  local accent_yellow = hsl("#ffffba")
+  local accent_green  = hsl("#baffc9")
+  local accent_blue   = hsl("#bae1ff")
+  -- local accent_turquoise = hsl("#99dddd")
+  local accent_purple = hsl("#afafff")
 
   -- Highlighting for:
   -- FIXME:
@@ -59,7 +73,7 @@ local theme = lush(function()
 
   local hint  = accent_blue
   local info  = accent_green
-  local warn  = accent_yellow
+  local warn  = accent_orange
   local error = accent_red
 
   return {
@@ -70,7 +84,9 @@ local theme = lush(function()
     Include { fg = color10 }, -- preprocessor #include
 
     -- def, etc.
-    Keyword { fg = color09 }, --  any other keyword
+    Keyword { fg = color08 }, --  any other keyword
+    sym "@keyword.function" { fg = color09 },
+    --sym "@constructor" { fg = color09 },
 
     -- if, etc.
     TSField { fg = color02 }, -- For fields.
@@ -110,14 +126,14 @@ local theme = lush(function()
     CursorColumn { bg = color11 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     ColorColumn { bg = color11 }, -- used for the columns set with 'colorcolumn'
     Visual { bg = color11.lighten(4) }, -- Visual mode selection
-    StatusLine { bg = CursorLine.bg },
+    StatusLine { bg = color11 },
 
     -- functions, methods, etc.
-    Function { fg = accent_green }, -- function name (also: methods for classes)
-    TSMethod { fg = accent_green }, -- For method calls and definitions.
-    TSFunction { fg = accent_green }, -- For function (calls and definitions).
-    TSPunctBracket { fg = accent_green }, -- For brackets and parens.
-    TSFuncBuiltin { fg = accent_green }, -- For builtin functions: `table.insert` in Lua.
+    Function { fg = accent_purple }, -- function name (also: methods for classes)
+    TSMethod { fg = accent_purple }, -- For method calls and definitions.
+    TSFunction { fg = accent_purple }, -- For function (calls and definitions).
+    TSPunctBracket { fg = accent_purple }, -- For brackets and parens.
+    TSFuncBuiltin { fg = accent_purple }, -- For builtin functions: `table.insert` in Lua.
 
     -- constants, numbers, etc.
     Constant { fg = accent_red }, -- (preferred) any constant
@@ -127,11 +143,11 @@ local theme = lush(function()
     Float { fg = accent_red }, -- a floating point constant: 2.3e10
 
     -- search/match
-    MatchParen { fg = orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    IncSearch { fg = black, bg = accent_yellow }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
-    CurSearch { fg = black, bg = accent_yellow },
-    Search { fg = black, bg = yellow },
-    Substitute { fg = black, bg = yellow }, -- |:substitute| replacement                                                 text  highlighting
+    MatchParen { fg = accent_orange }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    IncSearch { fg = black, bg = accent_yellow.darken(40) }, -- 'incsearch' highlighting; also used for the text replaced      with  ":s///c"
+    CurSearch { fg = black, bg = accent_yellow.darken(40) },
+    Search { fg = black, bg = accent_yellow },
+    Substitute { fg = black, bg = accent_yellow }, -- |:substitute| replacement                                                 text  highlighting
 
     -- TODO, FIXME, etc.
     WarningMsg { fg = black, bg = warn }, -- warning messages
@@ -151,9 +167,9 @@ local theme = lush(function()
     LspDiagnosticsVirtualTextError { fg = error, bg = color11 }, -- Used for "Error" diagnostic virtual text
 
     -- diff stuff
-    DiffAdd { fg = green }, -- diff mode: Added line |diff.txt|
-    DiffChange { fg = blue }, -- diff mode: Changed line |diff.txt|
-    DiffDelete { fg = red }, -- diff mode: Deleted line |diff.txt|
+    DiffAdd { fg = accent_green.darken(15) }, -- diff mode: Added line |diff.txt|
+    DiffChange { fg = accent_blue.darken(15) }, -- diff mode: Changed line |diff.txt|
+    DiffDelete { fg = accent_red.darken(15) }, -- diff mode: Deleted line |diff.txt|
 
     TSURI { fg = color01 }, -- Any URI like a link or email.
 
