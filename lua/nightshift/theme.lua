@@ -19,29 +19,8 @@ local lush = require('lush')
 local hsl = lush.hsl
 
 local theme = lush(function(injected_functions)
+  -- https://github.com/rktjmp/lush.nvim/issues/109
   local sym = injected_functions.sym
-
-  local bg    = hsl("#1c2240")
-  local black = hsl("#111111")
-  local white = hsl("#eeeeee")
-
-  -- accent colors for info/warn/error, etc.
-  local accent_red       = hsl("#ffb3ba")
-  local accent_orange    = hsl("#ffdfba")
-  local accent_yellow    = hsl("#ffffba")
-  local accent_green     = hsl("#baffc9")
-  local accent_turquoise = hsl("#99dddd")
-  local accent_blue      = hsl("#bae1ff")
-  local accent_purple    = hsl("#afafff")
-
-  -- primary accent color - function names, etc.
-  local accent_primary = accent_purple
-  local search_highlight = accent_orange
-
-  local hint  = accent_blue
-  local info  = accent_green
-  local warn  = accent_orange
-  local error = accent_red
 
   -- NOTE: aiming for something like this with relative colors:
   -- local c01 = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
@@ -57,6 +36,28 @@ local theme = lush(function(injected_functions)
   -- local c09 = hsl("#b9bfdf") -- unused
   -- local c10 = hsl("#bfbfdf") -- variable/field/identifier
   -- local c11 = hsl("#d8dbee") -- URIs
+
+  local bg    = hsl("#1c2240")
+  local black = hsl("#111111")
+  local white = hsl("#eeeeee")
+
+  -- accent colors for info/warn/error, etc.
+  local accent_red       = hsl("#ffb3ba")
+  local accent_orange    = hsl("#ffdfba")
+  local accent_yellow    = hsl("#ffffba")
+  local accent_green     = hsl("#baffc9")
+  local accent_turquoise = hsl("#99dddd")
+  local accent_blue      = hsl("#bae1ff")
+  local accent_purple    = hsl("#afafff")
+
+  -- primary accent color - function names, etc.
+  -- local accent_primary = accent_purple
+  local search_highlight = accent_orange
+
+  local hint  = accent_blue
+  local info  = accent_green
+  local warn  = accent_orange
+  local error = accent_red
 
   -- FIXME:
   -- adjust all this stuff with .rotate() .(de)saturate() and (ligh|dark)en()
