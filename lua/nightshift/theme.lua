@@ -123,8 +123,8 @@ local theme = lush(function(injected_functions)
     EndOfBuffer { fg = c04 }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     VertSplit { fg = c08 }, -- the column separating vertically split windows, also used by lsp popup outline
 
-    -- menus (inc. completion menu)
-    Pmenu { fg = c11, bg = bg }, -- Popup menu: normal item.
+    -- menus (inc. tab completion menu)
+    Pmenu { fg = c06, bg = bg }, -- Popup menu: normal item.
     PmenuSel { fg = c11, bg = bg }, -- Popup menu: selected item.
     PmenuSbar { bg = c02 }, -- Popup menu: scrollbar.
     PmenuThumb { bg = c02 }, -- Popup menu: Thumb of the scrollbar.
