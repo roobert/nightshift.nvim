@@ -4,7 +4,7 @@ A dark theme with low-contrast bluish-purple gradient.
 
 ## :dragon: Preview
 
-![Screenshot](https://user-images.githubusercontent.com/226654/203864517-a539b847-bf41-448c-9561-412ba4dca7a3.png)
+![Screenshot](https://user-images.githubusercontent.com/226654/204130911-42163083-452b-400f-b322-a18f1383f794.png)
 
 ## :hammer_and_wrench: Install
 
@@ -20,5 +20,6 @@ colorscheme nightshift
 
 ## :snake: Supported Plugins
 
+* Bufferline
 * Lualine
 * Trouble
