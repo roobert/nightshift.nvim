@@ -83,7 +83,7 @@ local theme = lush(function(injected_functions)
 
   -- local accent_primary = accent_purple
   local accent_primary = color_main.rotate(10).lighten(75).saturate(90)
-  local accent_secondary = color_blue
+  local accent_secondary = accent_blue
 
   -- primary accent color - function names, etc.
   local search_highlight = accent_orange
@@ -142,7 +142,7 @@ local theme = lush(function(injected_functions)
     CursorIM {}, -- like Cursor, but used when in IME mode |CursorIM|
 
     -- configuration for various background items / highlighted/selected stuff
-    CursorLine { bg = c01 }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine { bg = c01.lighten(5) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     CursorColumn { bg = c01 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     ColorColumn { bg = c01 }, -- used for the columns set with 'colorcolumn'
     Visual { bg = c01.lighten(4) }, -- Visual mode selection
