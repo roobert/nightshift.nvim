@@ -62,8 +62,8 @@ local theme = lush(function(injected_functions)
   -- FIXME:
   -- adjust all this stuff with .rotate() .(de)saturate() and (ligh|dark)en()
 
-  -- local color_main = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
-  local color_main = hsl("#0000ff").rotate(-10).desaturate(75).darken(55)
+  --local color_main = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
+  local color_main = hsl("#0000ff").rotate(-15).desaturate(65).darken(65)
 
   local c01 = color_main
   local c02 = c01.lighten(10)
@@ -87,8 +87,8 @@ local theme = lush(function(injected_functions)
 
   return {
     -- main syntax
-    Include { fg = c02 }, -- preprocessor #include
     Comment { fg = c03 }, -- any comment
+    Include { fg = c04 }, -- preprocessor #include
     Normal { fg = c08, bg = bg }, -- normal text
     String { fg = white }, -- a string constant: "this is a string"
 
