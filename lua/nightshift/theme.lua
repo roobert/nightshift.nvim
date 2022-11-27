@@ -50,10 +50,6 @@ local theme = lush(function(injected_functions)
   local accent_blue      = hsl("#bae1ff")
   local accent_purple    = hsl("#afafff")
 
-  -- primary accent color - function names, etc.
-  -- local accent_primary = accent_purple
-  local search_highlight = accent_orange
-
   local hint  = accent_blue
   local info  = accent_green
   local warn  = accent_orange
@@ -85,7 +81,12 @@ local theme = lush(function(injected_functions)
   local c10 = c09.lighten(45)
   local c11 = c10.lighten(10)
 
+  -- local accent_primary = accent_purple
   local accent_primary = color_main.rotate(10).lighten(75).saturate(90)
+  local accent_secondary = color_blue
+
+  -- primary accent color - function names, etc.
+  local search_highlight = accent_orange
 
   return {
     -- main syntax
@@ -113,7 +114,7 @@ local theme = lush(function(injected_functions)
 
     -- this has to be Normal because there's no way to distinguish it from normal variables
     TSParameter { fg = c08 }, -- For parameters of a function.
-    Type { fg = accent_blue }, -- (preferred) int, long, char, etc.
+    Type { fg = accent_secondary }, -- (preferred) int, long, char, etc.
 
     -- left margin
     LineNr { fg = c05 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
@@ -155,11 +156,11 @@ local theme = lush(function(injected_functions)
     TSFuncBuiltin { fg = accent_primary }, -- For builtin functions: `table.insert` in Lua.
 
     -- constants, numbers, etc.
-    Constant { fg = accent_blue }, -- (preferred) any constant
-    Character { fg = accent_blue }, --  a character constant: 'c', '\n'
-    Number { fg = accent_blue }, -- a number constant: 234, 0xff
-    Boolean { fg = accent_blue }, -- a boolean constant: TRUE, false
-    Float { fg = accent_blue }, -- a floating point constant: 2.3e10
+    Constant { fg = accent_secondary }, -- (preferred) any constant
+    Character { fg = accent_secondary }, --  a character constant: 'c', '\n'
+    Number { fg = accent_secondary }, -- a number constant: 234, 0xff
+    Boolean { fg = accent_secondary }, -- a boolean constant: TRUE, false
+    Float { fg = accent_secondary }, -- a floating point constant: 2.3e10
 
     -- search/match
     CurSearch { fg = search_highlight.darken(50) },
