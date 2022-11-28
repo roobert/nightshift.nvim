@@ -23,19 +23,19 @@ local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
   -- NOTE: aiming for something like this with relative colors:
-  -- local c01 = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
-  -- local c02 = hsl("#364178") -- menu sbar/thumb
-  -- local c03 = hsl("#3e4b8a") -- include/function, etc.
-  -- local c04 = hsl("#46549b") -- comment/keyword
+  local c01 = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
+  local c02 = hsl("#364178") -- menu sbar/thumb
+  local c03 = hsl("#3e4b8a") -- include/function, etc.
+  local c04 = hsl("#46549b") -- comment/keyword
 
-  -- local c05 = hsl("#5664b3") -- 1 - just line number
-  -- local c06 = hsl("#6b75bb") -- 2 - field/special
-  -- local c07 = hsl("#8185c2") -- 2 - operator/shebang
-  -- local c08 = hsl("#9696ca") -- 3 - normal text
+  local c05 = hsl("#5664b3") -- 1 - just line number
+  local c06 = hsl("#6b75bb") -- 2 - field/special
+  local c07 = hsl("#8185c2") -- 2 - operator/shebang
+  local c08 = hsl("#9696ca") -- 3 - normal text
 
-  -- local c09 = hsl("#b9bfdf") -- unused
-  -- local c10 = hsl("#bfbfdf") -- variable/field/identifier
-  -- local c11 = hsl("#d8dbee") -- URIs
+  local c09 = hsl("#b9bfdf") -- unused
+  local c10 = hsl("#bfbfdf") -- variable/field/identifier
+  local c11 = hsl("#d8dbee") -- URIs
 
   local bg    = hsl("#1c2240")
   local black = hsl("#111111")
@@ -60,26 +60,26 @@ local theme = lush(function(injected_functions)
 
   -- NOTE: the main colors are broken up into three gradients
 
-  --local color_main = hsl("#232a4d") -- c01 is the main colour for highlighted/selected stuff
-  local color_main = hsl("#0000ff").rotate(-15).desaturate(65).darken(65)
+  local color_main = c01 -- c01 is the main colour for highlighted/selected stuff
+  -- local color_main = hsl("#0000ff").rotate(-15).desaturate(65).darken(65).lighten(10)
 
-  local c01 = color_main
-  local c02 = c01.lighten(10)
-  local c03 = c02.lighten(10)
-  local c04 = c03.lighten(10)
+  -- local c01 = color_main
+  -- local c02 = c01.lighten(10)
+  -- local c03 = c02.lighten(10)
+  -- local c04 = c03.lighten(10)
 
-  local color_secondary = color_main.lighten(30)
+  -- local color_secondary = color_main.lighten(30)
 
-  local c05 = color_secondary
-  local c06 = c05.lighten(20)
-  local c07 = c06.lighten(10)
-  local c08 = c07.lighten(10)
+  -- local c05 = color_secondary
+  -- local c06 = c05.lighten(20)
+  -- local c07 = c06.lighten(10)
+  -- local c08 = c07.lighten(10)
 
-  local color_thirdary = color_secondary.lighten(30)
+  -- local color_thirdary = color_secondary.lighten(30)
 
-  local c09 = color_thirdary
-  local c10 = c09.lighten(45)
-  local c11 = c10.lighten(10)
+  -- local c09 = color_thirdary
+  -- local c10 = c09.lighten(45)
+  -- local c11 = c10.lighten(10)
 
   -- local accent_primary = accent_purple
   local accent_primary = color_main.rotate(10).lighten(75).saturate(90)
@@ -98,6 +98,7 @@ local theme = lush(function(injected_functions)
     -- def, etc.
     Keyword { fg = c04 }, --  any other keyword
     sym "@keyword.function" { fg = c03 },
+    --sym "@keyword.operator" { fg = c04 },
     sym "@field" { fg = c06 },
     sym "@variable" { fg = c10 },
     sym "@constant.builtin" { fg = white },
@@ -189,7 +190,23 @@ local theme = lush(function(injected_functions)
     -- diff stuff
     DiffAdd { fg = accent_green.darken(15) }, -- diff mode: Added line |diff.txt|
     DiffChange { fg = accent_blue.darken(15) }, -- diff mode: Changed line |diff.txt|
-    DiffDelete { fg = accent_red.darken(15) } -- diff mode: Deleted line |diff.txt|
+    DiffDelete { fg = accent_red.darken(15) }, -- diff mode: Deleted line |diff.txt|
+
+    -- trouble.nvim
+    TroubleFile { fg = accent_primary },
+
+    HopNextKey = { fg = accent_red },
+    HopNextKey1 = { fg = accent_red },
+    HopNextKey2 = { fg = accent_blue },
+    HopCursor = { fg = accent_green },
+    HopPreview = { fg = accent_purple },
+    HopInitHighlight = { fg = accent_primary },
+
+    -- markdown
+    sym "markdownH1" { fg = c11 },
+    sym "markdownH2" { fg = c11 },
+    sym "markdownH3" { fg = c11 },
+    sym "markdownH4" { fg = c11 }
   }
 end)
 
