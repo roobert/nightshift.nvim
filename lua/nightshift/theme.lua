@@ -133,6 +133,8 @@ local theme = lush(function(injected_functions)
     PmenuSbar { bg = c02 }, -- Popup menu: scrollbar.
     PmenuThumb { bg = c02 }, -- Popup menu: Thumb of the scrollbar.
 
+    --FloatBorder { fg = c04 },
+
     -- used by shebang lines
     PreProc { fg = c07 }, -- (preferred) generic Preprocessor
     TSURI { fg = c11 }, -- Any URI like a link or email.
@@ -214,3 +216,4 @@ end)
 return theme
 
 -- vi:nowrap
+
