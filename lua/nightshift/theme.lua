@@ -204,6 +204,7 @@ local theme = lush(function(injected_functions)
     HopInitHighlight = { fg = accent_primary },
 
     -- markdown
+    sym "@text.title" { fg = c11 },
     sym "markdownH1" { fg = c11 },
     sym "markdownH2" { fg = c11 },
     sym "markdownH3" { fg = c11 },
