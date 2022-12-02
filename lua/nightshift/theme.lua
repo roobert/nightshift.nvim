@@ -11,7 +11,6 @@
 
 -- FIXME:
 -- diff view
--- markdown
 -- hop
 -- trouble
 
@@ -216,4 +215,3 @@ end)
 return theme
 
 -- vi:nowrap
-

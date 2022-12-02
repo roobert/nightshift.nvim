@@ -1,6 +1,6 @@
 # :sparkles: Nightshift
 
-A dark theme with low-contrast bluish-purple gradient.
+A dark low-contrast theme.
 
 ## :dragon: Preview
 
