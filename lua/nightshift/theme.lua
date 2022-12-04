@@ -203,6 +203,10 @@ local theme = lush(function(injected_functions)
     HopPreview = { fg = accent_purple },
     HopInitHighlight = { fg = accent_primary },
 
+    -- vim tutor
+    sym "Title" { fg = c11 },
+    sym "tutorLink" { fg = accent_blue },
+
     -- markdown
     sym "@text.title" { fg = c11 },
     sym "markdownH1" { fg = c11 },
