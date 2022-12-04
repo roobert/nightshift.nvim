@@ -1,6 +1,6 @@
 # :sparkles: Nightshift
 
-A dark low-contrast theme.
+A dark low-contrast Neovim theme.
 
 ## :dragon: Preview
 
