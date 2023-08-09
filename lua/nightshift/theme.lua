@@ -201,7 +201,7 @@ local theme = lush(function(injected_functions)
 		HopNextKey1 = { fg = accent_red },
 		HopNextKey2 = { fg = accent_blue },
 		HopCursor = { fg = accent_green },
-		HopPreview = { fg = accent_purple },
+		HopPreviei = { fg = accent_purple },
 		HopInitHighlight = { fg = accent_primary },
 
 		-- vim tutor
@@ -214,6 +214,12 @@ local theme = lush(function(injected_functions)
 		sym("markdownH2")({ fg = c11 }),
 		sym("markdownH3")({ fg = c11 }),
 		sym("markdownH4")({ fg = c11 }),
+
+		-- terraform
+		sym("@lsp.type.type.terraform")({ fg = c04 }),
+		sym("@lsp.type.variable.terraform")({ fg = c10 }),
+		sym("@lsp.type.property.terraform")({ fg = c07 }),
+		sym("@lsp.type.enumMember.terraform")({ fg = white }),
 	}
 end)
 
