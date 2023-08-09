@@ -97,6 +97,7 @@ local theme = lush(function(injected_functions)
 
 		-- def, etc.
 		Keyword({ fg = c04 }), --  any other keyword
+		Directory({ fg = c04 }), --  any other keyword
 		sym("@keyword.function")({ fg = c03 }),
 		--sym "@keyword.operator" { fg = c04 },
 		sym("@field")({ fg = c06 }),
