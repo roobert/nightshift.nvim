@@ -198,15 +198,8 @@ local theme = lush(function(injected_functions)
 		-- trouble.nvim
 		TroubleFile({ fg = accent_primary }),
 
-		HopNextKey = { fg = accent_red },
-		HopNextKey1 = { fg = accent_red },
-		HopNextKey2 = { fg = accent_blue },
-		HopCursor = { fg = accent_green },
-		HopPreviei = { fg = accent_purple },
-		HopInitHighlight = { fg = accent_primary },
-
-		StatuslineActionHintsDefinition = { fg = accent_yellow, bg = c01.lighten(5) },
-		StatuslineActionHintsReferences = { fg = accent_red, bg = c01.lighten(5) },
+		StatuslineActionHintsDefinition({ fg = accent_yellow, bg = c01.lighten(5) }),
+		StatuslineActionHintsReferences({ fg = accent_red, bg = c01.lighten(5) }),
 
 		-- vim tutor
 		sym("Title")({ fg = c11 }),
