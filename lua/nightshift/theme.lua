@@ -205,6 +205,10 @@ local theme = lush(function(injected_functions)
 		HopPreviei = { fg = accent_purple },
 		HopInitHighlight = { fg = accent_primary },
 
+		StatuslineActionHintsDefinition = { fg = accent_blue },
+		StatuslineActionHintsDelimiter = { fg = accent_red },
+		StatuslineActionHintsReferences = { fg = accent_red },
+
 		-- vim tutor
 		sym("Title")({ fg = c11 }),
 		sym("tutorLink")({ fg = accent_blue }),
