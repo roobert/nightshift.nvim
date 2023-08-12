@@ -198,8 +198,8 @@ local theme = lush(function(injected_functions)
 		-- trouble.nvim
 		TroubleFile({ fg = accent_primary }),
 
-		StatuslineActionHintsDefinition({ fg = accent_blue, bg = c01.lighten(5) }),
-		StatuslineActionHintsReferences({ fg = accent_red, bg = c01.lighten(5) }),
+		ActionHintsDefinition({ fg = accent_blue, bg = c01.lighten(5) }),
+		ActionHintsReferences({ fg = accent_red, bg = c01.lighten(5) }),
 
 		-- vim tutor
 		sym("Title")({ fg = c11 }),
