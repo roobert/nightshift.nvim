@@ -177,6 +177,7 @@ local theme = lush(function(injected_functions)
 		WarningMsg({ fg = black, bg = warn }), -- warning messages
 		Error({ fg = black, bg = error }), -- (preferred) any erroneous construct
 		Todo({ fg = black, bg = hint }), -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		ErrorMsg({ fg = error }), -- (preferred) any erroneous construct
 
 		DiagnosticInfo({ fg = info }),
 		DiagnosticHint({ fg = hint }),
@@ -217,6 +218,8 @@ local theme = lush(function(injected_functions)
 		sym("@lsp.type.variable.terraform")({ fg = c10 }),
 		sym("@lsp.type.property.terraform")({ fg = c07 }),
 		sym("@lsp.type.enumMember.terraform")({ fg = white }),
+
+		ChatGPTWelcome({ fg = Normal.fg, bg = Normal.bg }),
 	}
 end)
 
