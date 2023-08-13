@@ -134,7 +134,7 @@ local theme = lush(function(injected_functions)
 		PmenuSbar({ bg = bg.darken(60) }), -- Popup menu: scrollbar.
 		PmenuThumb({ bg = bg.darken(10) }), -- Popup menu: Thumb of the scrollbar.
 
-		--FloatBorder { fg = c04 },
+		FloatBorder({ bg = bg }),
 
 		-- used by shebang lines
 		PreProc({ fg = c07 }), -- (preferred) generic Preprocessor
