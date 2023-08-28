@@ -9,7 +9,7 @@ A dark low-contrast Neovim theme.
 ## :hammer_and_wrench: Install
 
 ```
-use { "roobert/nightshift.vim", requires = "rktjmp/lush.nvim" }
+{ "roobert/nightshift.nvim" }
 ```
 
 ## :squid: Usage
@@ -18,8 +18,19 @@ use { "roobert/nightshift.vim", requires = "rktjmp/lush.nvim" }
 colorscheme nightshift
 ```
 
+## Italic Support in Iterm2
+
+TODO
+
 ## :snake: Supported Plugins
 
-* Bufferline
-* Lualine
-* Trouble
+- Bufferline
+- Lualine
+- Trouble
+
+## :snake: Improved Languages
+
+These languages have been improved specific treesitter based syntax highlighting:
+
+- python
+- terraform/hcl
