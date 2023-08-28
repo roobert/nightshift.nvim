@@ -10,7 +10,7 @@ return {
 	{ "NonText", p.fg },
 
 	-- Comments and Documentation
-	{ "EndOfBuffer", color2 },
+	{ "EndOfBuffer", p.color2 },
 	{ "Comment", p.color2, nil, "italic" },
 	{ "DocComment", p.color3, nil, "italic" },
 
