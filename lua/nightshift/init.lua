@@ -5,9 +5,9 @@ M = {}
 -- * improve the color colors?
 -- * i think the colorscheme loading is bad somehow due to flash in new buffers?
 -- * unselected title tab text
--- * fix cmp/tab shit
+-- * fix cmp/tab stuff
 -- * background color for action hints..
--- * re-add todo/type shit to lualine
+-- * re-add todo/type stuff lualine
 
 function M.load()
 	vim.o.background = "dark"
