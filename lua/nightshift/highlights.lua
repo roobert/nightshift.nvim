@@ -1,234 +1,191 @@
-local black = "#111111"
-local white = "#eeeeee"
-
-local color0 = "#121527"
-local color1 = "#171B31"
-local color2 = "#232A4D"
-local color3 = "#313C6D"
-local color4 = "#3E4D89"
-local color5 = "#4D60A8"
-local color6 = "#687BBA"
-local color7 = "#8495C7"
-local color8 = "#A4B1D6"
-local color9 = "#C3CDE4"
-local color10 = "#DFE5F1"
-
--- normal accent colors
--- local accent0 = "#D66A6A"
--- local accent1 = "#D6956A"
--- local accent2 = "#D6CC6A"
--- local accent3 = "#6AD682"
--- local accent4 = "#6AB7D6"
--- local accent5 = "#D66A7E"
--- local accent6 = "#B36AD6"
-
--- pastel accent colors
-local accent0 = "#D97C8F"
-local accent1 = "#D9AE7E"
-local accent2 = "#D9D87E"
-local accent3 = "#A5D9A7"
-local accent4 = "#8BB9C8"
-local accent5 = "#C9A1D3"
-local accent6 = "#B8A1D9"
-
--- convenience mappings..
-local red = accent0
-local orange = accent1
-local yellow = accent2
-local green = accent3
-local blue = accent4
-local pink = accent5
-local purple = accent6
-
-local bg = color0
-local fg = color9
+local p = require("nightshift.palette")
 
 -- Exmaple mappings table entry:
 -- { "<highlight>", "<fg>", "<bg>", "<style>" }
 -- or for multiple styles:
 -- { "<highlight>", "<fg>", "<bg>", {"italic", "bold", "underline" } }
 return {
-	{ "Normal", fg },
-	{ "NotifyBackground", nil, bg },
-	{ "NonText", fg },
+	{ "Normal", p.fg },
+	{ "NotifyBackground", nil, p.bg },
+	{ "NonText", p.fg },
 
 	-- Comments and Documentation
 	{ "EndOfBuffer", color2 },
-	{ "Comment", color2, nil, "italic" },
-	{ "DocComment", color3, nil, "italic" },
+	{ "Comment", p.color2, nil, "italic" },
+	{ "DocComment", p.color3, nil, "italic" },
 
 	-- Preprocessor & Include
-	{ "PreProc", color3 },
-	{ "Include", color3 },
+	{ "PreProc", p.color3 },
+	{ "Include", p.color3 },
 
 	-- Statements and Keywords
-	{ "Statement", color3 },
-	{ "Conditional", color3 },
-	{ "Repeat", color3 },
-	{ "Keyword", color3 },
-	{ "Exception", color3 },
-	{ "Directory", color3 },
+	{ "Statement", p.color3 },
+	{ "Conditional", p.color3 },
+	{ "Repeat", p.color3 },
+	{ "Keyword", p.color3 },
+	{ "Exception", p.color3 },
+	{ "Directory", p.color3 },
 
 	-- Identifiers
-	{ "Variable", color8 },
-	{ "Identifier", color4 },
-	{ "Function", color4 },
+	{ "Variable", p.color8 },
+	{ "Identifier", p.color4 },
+	{ "Function", p.color4 },
 
 	-- Variables
-	{ "Type", color4, nil, "NONE" },
-	{ "Label", color5 },
+	{ "Type", p.color4, nil, "NONE" },
+	{ "Label", p.color5 },
 
 	-- Operators and Delimiters
-	{ "Operator", color6 },
-	{ "Delimiter", color6 },
+	{ "Operator", p.color6 },
+	{ "Delimiter", p.color6 },
 
 	-- Constants and Literals
-	{ "Constant", color9 },
-	{ "Character", color9 },
-	{ "Number", color9 },
-	{ "Boolean", color9 },
-	{ "Float", color9 },
+	{ "Constant", p.color9 },
+	{ "Character", p.color9 },
+	{ "Number", p.color9 },
+	{ "Boolean", p.color9 },
+	{ "Float", p.color9 },
 
 	-- Strings
-	{ "String", color10 },
+	{ "String", p.color10 },
 
 	-- Special characters, TODOs, and Debug
-	{ "Special", color3 },
-	{ "SpecialChar", color3 },
-	{ "Todo", color3, nil, "italic" },
-	{ "Debug", color3, nil, "italic" },
+	{ "Special", p.color3 },
+	{ "SpecialChar", p.color3 },
+	{ "Todo", p.color3, nil, "italic" },
+	{ "Debug", p.color3, nil, "italic" },
 
 	-- Status line, VertSplit, Tab pages, Titles, etc.
-	{ "StatusLine", color1 },
-	{ "StatusLineNC", color2 },
-	{ "VertSplit", color3 },
-	{ "Title", color4 },
-	{ "TabLine", color3 },
-	{ "TabLineSel", color2 },
-	{ "TabLineFill", color4 },
+	{ "StatusLine", p.color1 },
+	{ "StatusLineNC", p.color2 },
+	{ "VertSplit", p.color3 },
+	{ "Title", p.color4 },
+	{ "TabLine", p.color3 },
+	{ "TabLineSel", p.color2 },
+	{ "TabLineFill", p.color4 },
 
 	-- Visual Mode
-	{ "Visual", color4, color1 },
-	{ "VisualNOS", color4, color1 },
+	{ "Visual", p.color4, p.color1 },
+	{ "VisualNOS", p.color4, p.color1 },
 
 	-- Line Numbers
-	{ "LineNr", color2 },
-	{ "CursorLineNr", color3 },
+	{ "LineNr", p.color2 },
+	{ "CursorLineNr", p.color3 },
 
 	-- Folded text, and the column where it's shown
-	{ "Folded", color4, bg },
-	{ "FoldColumn", color4, bg },
+	{ "Folded", p.color4, p.bg },
+	{ "FoldColumn", p.color4, p.bg },
 
 	-- Popup menu
-	{ "Pmenu", color9, color1 },
-	{ "PmenuSel", color9, color2 },
-	{ "PmenuSbar", color4, bg },
-	{ "PmenuThumb", color3, bg },
+	{ "Pmenu", p.color9, p.color1 },
+	{ "PmenuSel", p.color9, p.color2 },
+	{ "PmenuSbar", p.color4, p.bg },
+	{ "PmenuThumb", p.color3, p.bg },
 
 	-- Spell checking
-	{ "SpellBad", color2 },
-	{ "SpellCap", color3 },
-	{ "SpellRare", color4 },
-	{ "SpellLocal", color5 },
+	{ "SpellBad", p.color2 },
+	{ "SpellCap", p.color3 },
+	{ "SpellRare", p.color4 },
+	{ "SpellLocal", p.color5 },
 
 	-- More UI elements
-	{ "Cursor", color2 },
-	{ "CursorIM", color2 },
-	{ "CursorColumn", color2 },
-	{ "CursorLine", nil, color1 },
-	{ "ToolbarLine", color3 },
-	{ "ToolbarButton", color3 },
+	{ "Cursor", p.color2 },
+	{ "CursorIM", p.color2 },
+	{ "CursorColumn", p.color2 },
+	{ "CursorLine", nil, p.color1 },
+	{ "ToolbarLine", p.color3 },
+	{ "ToolbarButton", p.color3 },
 
 	-- UI Messages
-	{ "MoreMsg", blue },
-	{ "Question", green },
-	{ "SpecialKey", red },
+	{ "MoreMsg", p.blue },
+	{ "Question", p.green },
+	{ "SpecialKey", p.red },
 
 	-- Search & Matches
-	{ "MatchParen", green },
-	{ "Search", orange },
-	{ "IncSearch", orange, bg },
+	{ "MatchParen", p.green },
+	{ "Search", p.orange },
+	{ "IncSearch", p.orange, p.bg },
 
 	-- Errors and Warnings
-	{ "NvimInternalError", red, bg },
-	{ "Error", red },
-	{ "WarningMsg", orange },
-	{ "ErrorMsg", red },
+	{ "NvimInternalError", p.red, p.bg },
+	{ "Error", p.red },
+	{ "WarningMsg", p.orange },
+	{ "ErrorMsg", p.red },
 
 	-- Diagnostic
-	{ "DiagnosticInfo", blue, nil, "italic" },
-	{ "DiagnosticHint", yellow, nil, "italic" },
-	{ "DiagnosticWarning", orange, nil, "italic" },
-	{ "DiagnosticWarn", orange, nil, "italic" },
-	{ "DiagnosticError", red, nil, "italic" },
+	{ "DiagnosticInfo", p.blue, nil, "italic" },
+	{ "DiagnosticHint", p.yellow, nil, "italic" },
+	{ "DiagnosticWarning", p.orange, nil, "italic" },
+	{ "DiagnosticWarn", p.orange, nil, "italic" },
+	{ "DiagnosticError", p.red, nil, "italic" },
 
 	-- Indicators
-	{ "LspDiagnosticsSignInformation", blue, bg, "italic" },
-	{ "LspDiagnosticsSignHint", yellow, bg, "italic" },
-	{ "LspDiagnosticsSignWarning", orange, bg, "italic" },
-	{ "LspDiagnosticsSignError", red, bg, "italic" },
+	{ "LspDiagnosticsSignInformation", p.blue, p.bg, "italic" },
+	{ "LspDiagnosticsSignHint", p.yellow, p.bg, "italic" },
+	{ "LspDiagnosticsSignWarning", p.orange, p.bg, "italic" },
+	{ "LspDiagnosticsSignError", p.red, p.bg, "italic" },
 
 	-- Diff mode
-	{ "DiffAdd", green },
-	{ "DiffChange", orange },
-	{ "DiffDelete", red },
-	{ "DiffText", color2 },
+	{ "DiffAdd", p.green },
+	{ "DiffChange", p.orange },
+	{ "DiffDelete", p.red },
+	{ "DiffText", p.color2 },
 
 	-- SignColumn
-	{ "SignColumn", nil, bg },
-	{ "GitSignsAdd", green, bg },
-	{ "GitSignsChange", orange, bg },
-	{ "GitSignsDelete", red, bg },
+	{ "SignColumn", nil, p.bg },
+	{ "GitSignsAdd", p.green, p.bg },
+	{ "GitSignsChange", p.orange, p.bg },
+	{ "GitSignsDelete", p.red, p.bg },
 
 	-- Git & Version Control
-	{ "gitcommitComment", color4 },
-	{ "gitcommitUntracked", color4 },
-	{ "gitcommitDiscarded", color4 },
-	{ "gitcommitSelected", color4 },
-	{ "gitcommitUnmerged", color2 },
-	{ "gitcommitOnBranch", color3 },
-	{ "gitcommitBranch", color3 },
-	{ "gitcommitDiscardedType", color2 },
-	{ "gitcommitSelectedType", color2 },
-	{ "gitcommitUntrackedFile", color2 },
-	{ "gitcommitDiscardedFile", color2 },
-	{ "gitcommitUnmergedFile", color2 },
-	{ "gitcommitSelectedFile", color2 },
+	{ "gitcommitComment", p.color4 },
+	{ "gitcommitUntracked", p.color4 },
+	{ "gitcommitDiscarded", p.color4 },
+	{ "gitcommitSelected", p.color4 },
+	{ "gitcommitUnmerged", p.color2 },
+	{ "gitcommitOnBranch", p.color3 },
+	{ "gitcommitBranch", p.color3 },
+	{ "gitcommitDiscardedType", p.color2 },
+	{ "gitcommitSelectedType", p.color2 },
+	{ "gitcommitUntrackedFile", p.color2 },
+	{ "gitcommitDiscardedFile", p.color2 },
+	{ "gitcommitUnmergedFile", p.color2 },
+	{ "gitcommitSelectedFile", p.color2 },
 
 	-- Indent Lines
-	{ "IndentBlanklineChar", color2 },
+	{ "IndentBlanklineChar", p.color2 },
 
 	-- python
-	{ "@repeat.python", color3, nil, "italic" },
-	{ "@conditional.python", color3, nil, "italic" },
+	{ "@repeat.python", p.color3, nil, "italic" },
+	{ "@conditional.python", p.color3, nil, "italic" },
 
-	{ "@operator.python", color3 },
-	{ "@conditional.call.python", color3 },
-	{ "@punctuation.bracket.python", color3 },
-	{ "@punctuation.special.python", color3 },
-	{ "@function.builtin.python", color3 },
+	{ "@operator.python", p.color3 },
+	{ "@conditional.call.python", p.color3 },
+	{ "@punctuation.bracket.python", p.color3 },
+	{ "@punctuation.special.python", p.color3 },
+	{ "@function.builtin.python", p.color3 },
 
-	{ "@keyword.operator.python", color5, nil, "italic" },
-	{ "@method.call.python", color5 },
-	{ "@function.python", color5 },
-	{ "@function.call.python", color5 },
+	{ "@keyword.operator.python", p.color5, nil, "italic" },
+	{ "@method.call.python", p.color5 },
+	{ "@function.python", p.color5 },
+	{ "@function.call.python", p.color5 },
 
-	{ "@constructor.python", color6 },
-	{ "@constant.builtin.python", color6 },
+	{ "@constructor.python", p.color6 },
+	{ "@constant.builtin.python", p.color6 },
 
-	{ "@field.python", color7 },
+	{ "@field.python", p.color7 },
 
-	{ "@variable.python", color9 },
-	{ "@parameter.python", color9 },
+	{ "@variable.python", p.color9 },
+	{ "@parameter.python", p.color9 },
 
-	{ "@string.python", color10 },
+	{ "@string.python", p.color10 },
 
 	-- terraform
-	{ "@lsp.type.type.terraform", color3 },
-	{ "@lsp.type.property.terraform", color6 },
-	{ "@lsp.type.variable.terraform", color7 },
-	{ "@lsp.type.parameter.terraform", color8 },
-	{ "@lsp.type.enumMember.terraform", color10 },
-	{ "@lsp.type.string.terraform", color10 },
-	{ "@lsp.type.stringMember.terraform", color10 },
+	{ "@lsp.type.type.terraform", p.color3 },
+	{ "@lsp.type.property.terraform", p.color6 },
+	{ "@lsp.type.variable.terraform", p.color7 },
+	{ "@lsp.type.parameter.terraform", p.color8 },
+	{ "@lsp.type.enumMember.terraform", p.color10 },
+	{ "@lsp.type.string.terraform", p.color10 },
+	{ "@lsp.type.stringMember.terraform", p.color10 },
 }
