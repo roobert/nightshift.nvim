@@ -10,15 +10,6 @@ local color8 = "#A4B1D6"
 local color9 = "#C3CDE4"
 local color10 = "#DFE5F1"
 
--- pastel accent colors
-local accent0 = "#D97C8F"
-local accent1 = "#D9AE7E"
-local accent2 = "#D9D87E"
-local accent3 = "#A5D9A7"
-local accent4 = "#8BB9C8"
-local accent5 = "#C9A1D3"
-local accent6 = "#B8A1D9"
-
 -- normal accent colors
 -- local accent0 = "#D66A6A"
 -- local accent1 = "#D6956A"
@@ -27,6 +18,15 @@ local accent6 = "#B8A1D9"
 -- local accent4 = "#6AB7D6"
 -- local accent5 = "#D66A7E"
 -- local accent6 = "#B36AD6"
+
+-- pastel accent colors
+local accent0 = "#D97C8F"
+local accent1 = "#D9AE7E"
+local accent2 = "#D9D87E"
+local accent3 = "#A5D9A7"
+local accent4 = "#8BB9C8"
+local accent5 = "#C9A1D3"
+local accent6 = "#B8A1D9"
 
 return {
 	black = "#111111",

@@ -40,11 +40,11 @@ return {
 	{ "Delimiter", p.color6 },
 
 	-- Constants and Literals
-	{ "Constant", p.color9 },
-	{ "Character", p.color9 },
-	{ "Number", p.color9 },
-	{ "Boolean", p.color9 },
-	{ "Float", p.color9 },
+	{ "Character", p.red },
+	{ "Number", p.red },
+	{ "Boolean", p.blue },
+	{ "Float", p.blue },
+	{ "Constant", p.blue },
 
 	-- Strings
 	{ "String", p.color10 },
