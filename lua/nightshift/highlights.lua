@@ -82,6 +82,10 @@ return {
 	{ "PmenuSbar", p.color4, p.bg },
 	{ "PmenuThumb", p.color3, p.bg },
 
+	-- Diagnostic Pop-ups
+	{ "NormalFloat", p.fg, p.bg },
+	{ "FloatBorder", p.color4, p.bg },
+
 	-- Spell checking
 	{ "SpellBad", p.color2 },
 	{ "SpellCap", p.color3 },
