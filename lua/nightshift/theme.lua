@@ -4,20 +4,12 @@
 -- * re-add todo count stuff lualine
 -- * background color for action hints and status bar
 -- * add description to README
+-- * generate some artwork for backgrounds
+-- * add support for other popular programming languages
 
+-- FIXME:
+-- simplify to light and dark mode?
 local palettes = {
-	day = {
-		color0 = "#e9e9ed",
-		color1 = "#d3d4db",
-		color2 = "#bdbfc9",
-		color3 = "#a7a9b7",
-		color4 = "#7b7f94",
-		color5 = "#656982",
-		color6 = "#4e5470",
-		color7 = "#383f5e",
-		color8 = "#1A1E39",
-	},
-
 	night = {
 		color0 = "#191d33",
 		color1 = "#1A1E39",
@@ -40,6 +32,30 @@ local palettes = {
 		color6 = "#bdbfc9",
 		color7 = "#DFE5F1",
 		color8 = "#e9e9ed",
+	},
+
+	day = {
+		color0 = "#e9e9ed",
+		color1 = "#d3d4db",
+		color2 = "#bdbfc9",
+		color3 = "#a7a9b7",
+		color4 = "#7b7f94",
+		color5 = "#656982",
+		color6 = "#4e5470",
+		color7 = "#383f5e",
+		color8 = "#1A1E39",
+	},
+
+	dawn = {
+		color0 = "#e9e9ed",
+		color1 = "#d3d4db",
+		color2 = "#bdbfc9",
+		color3 = "#A4B1D6",
+		color4 = "#687BBA",
+		color5 = "#3E4D89",
+		color6 = "#232A4D",
+		color7 = "#1A1E39",
+		color8 = "#121527",
 	},
 }
 
@@ -78,28 +94,13 @@ local accents = {
 local palette = palettes[require("nightshift").get("palette")] or palettes["night"]
 local accent = accents[require("nightshift").get("accent")] or accents["bright"]
 
-local italics = function()
-	if require("nightshift").get("italics") then
-		return "italic"
-	else
-		return "NONE"
-	end
-end
-
-local bg = function()
-	if require("nightshift").get("transparent_background") then
-		return nil
-	else
-		return palette.color0
-	end
-end
+local italics = require("nightshift").get("italics") and "italic" or "NONE"
+local transparent_background = require("nightshift").get("transparent_background") and "NONE" or palette.color0
 
 return {
-	-- FIXME:
-	italic = italics(),
+	italic = italics,
 
-	-- FIXME:
-	bg = bg(),
+	bg = transparent_background,
 	fg = palette.color8,
 
 	red = accent.accent0,
