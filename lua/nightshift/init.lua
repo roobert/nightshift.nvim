@@ -1,13 +1,17 @@
 M = {}
 
--- TODO:
--- * lightmode
--- * improve the color colors?
--- * i think the colorscheme loading is bad somehow due to flash in new buffers?
--- * unselected title tab text
--- * fix cmp/tab stuff
--- * background color for action hints..
--- * re-add todo/type stuff lualine
+local config = {
+	palette = "night",
+	accent = "pastel",
+}
+
+M.setup = function(opts)
+	config = vim.tbl_extend("force", config, opts)
+end
+
+M.get = function(key)
+	return config[key]
+end
 
 function M.load()
 	vim.g.colors_name = "nightshift"
@@ -17,8 +21,13 @@ function M.load()
 	vim.o.background = "dark"
 
 	-- override border types for hover and diagnostic floats..
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 	vim.diagnostic.config({ float = { border = "rounded" } })
+
+	local float = { focusable = true, style = "minimal", border = "rounded" }
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float)
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float)
+
+	require("lspconfig.ui.windows").default_options.border = "single"
 
 	-- load the colorscheme mappings
 	require("nightshift.utils").apply_highlight_groups(require("nightshift.highlights"))
